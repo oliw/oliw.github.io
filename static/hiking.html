@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hiking Cray Map</title>
+    <meta name="charset" charset="utf-8" />
+    <meta name="viewport" content="width=650, user-scalable=yes">
+ 
+ 
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+ 
+ 
+ 
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false">
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+ 
+ 
+<style>
+  
+  html, body {
+        height: 100%;
+        margin: 0;
+      }
+ 
+#mapcanvas{
+ 
+  height:100%;
+}
+ 
+</style>
+ 
+<script>
+ 
+  var map;
+    
+ 
+  $(document).ready(function(){
+ 
+ 
+    var mapOptions = {
+      zoom: 8,
+      center: new google.maps.LatLng(37.821188, -122.332543),
+      mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+ 
+    map=new google.maps.Map($('#mapcanvas')[0], mapOptions);
+ 
+    //*********************************************************************
+    // Add the layer showing the inventory
+    //*********************************************************************
+
+    var data = [{"lat": 38.051921, "url": "http://www.meetup.com/bayhikers/events/198107622/", "lon": -122.803867}, {"lat": 37.545929, "url": "http://www.meetup.com/bayhikers/events/200446182/", "lon": -122.51313}, {"lat": 37.957153, "url": "http://www.meetup.com/bayhikers/events/201709862/", "lon": -122.629646}, {"lat": 40.298988, "url": "http://www.meetup.com/bayhikers/events/199290442/", "lon": -124.317253}, {"lat": 37.856119, "url": "http://www.meetup.com/bayhikers/events/202808332/", "lon": -122.539365}, {"lat": 36.24773, "url": "http://www.meetup.com/bayhikers/events/197668942/", "lon": -121.780937}, {"lat": 38.101032, "url": "http://www.meetup.com/bayhikers/events/205754602/", "lon": -122.856941}, {"lat": 40.820591, "url": "http://www.meetup.com/bayhikers/events/204854962/", "lon": -123.058861}, {"lat": 37.904278, "url": "http://www.meetup.com/bayhikers/events/212374912/", "lon": -122.269333}, {"lat": 37.803993, "url": "http://www.meetup.com/bayhikers/events/212778932/", "lon": -122.275055}, {"lat": 37.92495, "url": "http://www.meetup.com/bayhikers/events/215233422/", "lon": -121.922516}, {"lat": 37.847618, "url": "http://www.meetup.com/bayhikers/events/215962062/", "lon": -122.200714}, {"lat": 37.171261, "url": "http://www.meetup.com/bayhikers/events/218087972/", "lon": -122.222214}, {"lat": 37.968979, "url": "http://www.meetup.com/bayhikers/events/215955412/", "lon": -120.375717}, {"lat": 37.355495, "url": "http://www.meetup.com/bayhikers/events/218652607/", "lon": -122.136856}, {"lat": 37.861983, "url": "http://www.meetup.com/bayhikers/events/219028405/", "lon": -122.575411}, {"lat": 37.747089, "url": "http://www.meetup.com/bayhikers/events/219027917/", "lon": -119.573555}];
+
+    // Add a marker for each point on the map
+    $.each(data, function(i, val) {
+      var marker = new google.maps.Marker({
+        map:map,
+        position: new google.maps.LatLng(val['lat'], val['lon']),
+        icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/hiker.png',
+        url: val['url']
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        window.location.href = this.url;
+      });
+    });
+
+ 
+        
+  });//end document ready
+ 
+ 
+</script>
+ 
+  </head>
+  <body>
+    <div id="mapcanvas">
+    </div>
+  </body>
+ 
+ 
+</html>
