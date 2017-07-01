@@ -1,0 +1,123 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.24.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Protect your Python app from Timeouts &middot; O.</title>
+  
+
+  
+  <link rel="stylesheet" href="http://www.oliverwilkie.com/css/poole.css">
+  <link rel="stylesheet" href="http://www.oliverwilkie.com/css/syntax.css">
+  <link rel="stylesheet" href="http://www.oliverwilkie.com/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="O." />
+</head>
+
+	<body class=" ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://www.oliverwilkie.com/"><h1>O.</h1></a>
+      <p class="lead">
+       coding and other projects by Oliver Wilkie 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      
+        <li><a href="/about/"> About </a></li>
+      
+    </ul>
+
+    <p>&copy; 2017. All rights reserved. </p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Protect your Python app from Timeouts</h1>
+			  <span class="post-date">Sun, Jun 11, 2017</span>
+			      <p>In this post, I show how to better protect your python service when making http calls to other services by guaranteeing a timeout by monkey-patching the <em>requests</em> library.</p>
+
+<p>Services tend to talk to other services. These services might be owned by you, another team at work, or made available by a third party (e.g. Google Maps API).</p>
+
+<p>How tolerant is your service to the failure of one of these upstream services? Have you tested what will happen when one of these services isn&rsquo;t responding to your requests they way you expected?</p>
+
+<p>I found this out the hard way recently when I deployed a new feature to my python service that required talking to another service. This upstream service was taking a long time to respond to my high volume of requests.</p>
+
+<p>I use the <a href="https://github.com/requests/requests">requests</a> library to call the APIs of other services. This library, has no default timeout value for requests that are taking too long. The consequence is that all of my service&rsquo;s resources were quickly exhausted and waiting for responses from this upstream service that were never going to arrive.</p>
+
+<p>The result? My service pretty much ground to a halt.</p>
+
+<p>Other similar libraries written for other languages do have a default timeout setting in place. For instance, my ruby services use <a href="https://github.com/excon/excon">excon</a> which has a default timeout of 60 seconds. This is probably still too high for most cases but its very straightforward to set your own default</p>
+
+<pre><code># config/initializers/excon.rb
+Excon.defaults[:read_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
+Excon.defaults[:write_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
+Excon.defaults[:connect_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
+
+</code></pre>
+
+<p>As for the <em>requests</em> library&hellip;</p>
+
+<blockquote>
+<p>Most requests to external servers should have a timeout attached, in case the server is not responding in a timely manner. By default, requests do not time out unless a timeout value is set explicitly. Without a timeout, your code may hang for minutes or more. <a href="http://docs.python-requests.org/en/master/user/advanced/#timeouts">link</a></p>
+</blockquote>
+
+<p>Eeek!</p>
+
+<p>This means if you or another contributor forgets to add a <code>timeout</code> paramter to your requests library call you run this risk of a request never timing out (and hogging resources in doing so)!</p>
+
+<p>Ensuring a default timeout whenever the <em>requests</em> library is used can be only be achieved (as of requests v.2.17.3 at least) using monkey patching.</p>
+
+<p>I try to only use monkey patching as a last resort as it is brittle and harder than normal to debug but since there is no global constant or environment variable that can be overwritten we&rsquo;ll have to make do with monkey patching!</p>
+
+<pre><code>import requests
+from requests.adapters import TimeoutSauce
+import configuration
+
+
+class GlobalDefaultTimeoutSauce(TimeoutSauce):
+    # A subclass of TimeoutSauce that will use a
+    # default timeout setting when overrides are not already specified
+
+    def __init__(self, *args, **kwargs):
+        default_timeout_seconds = configuration.REQUESTS_DEFAULT_TIMEOUT_S
+        connect = kwargs.get('connect') or default_timeout_seconds
+        read = kwargs.get('read') or default_timeout_seconds
+        super(GlobalDefaultTimeoutSauce, self).__init__(connect=connect, read=read)
+
+
+def monkey_patch_requests_timeout_strategy():
+    # Subsequent usages of the requests library will use a default
+    # timeout if none is specified by the caller.
+    # Call me once during your app's init phase, before any requests are made.
+    requests.adapters.TimeoutSauce = GlobalDefaultTimeoutSauce
+</code></pre>
+
+<p>To see how this is used take a look at the adapters module in the requests project. <a href="https://github.com/requests/requests/blob/master/requests/adapters.py#L416">link</a></p>
+
+<p>Now I can boost the resiliency of my service from degredations of the services I depend on! Hope this helps someone else out!</p>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>

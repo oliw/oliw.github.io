@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.24.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>O.</title>
+  
+
+  
+  <link rel="stylesheet" href="http://www.oliverwilkie.com/css/poole.css">
+  <link rel="stylesheet" href="http://www.oliverwilkie.com/css/syntax.css">
+  <link rel="stylesheet" href="http://www.oliverwilkie.com/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="http://www.oliverwilkie.com/index.xml" rel="alternate" type="application/rss+xml" title="O." />
+</head>
+
+<body class=" ">
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://www.oliverwilkie.com/"><h1>O.</h1></a>
+      <p class="lead">
+       coding and other projects by Oliver Wilkie 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      
+        <li><a href="/about/"> About </a></li>
+      
+    </ul>
+
+    <p>&copy; 2017. All rights reserved. </p>
+  </div>
+</div>
+
+
+    <div class="content container">
+<div class="posts">
+
+      
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2017/06/python-requests/">
+        Protect your Python app from Timeouts
+      </a>
+    </h1>
+
+    <span class="post-date">Sun, Jun 11, 2017</span>
+
+    <p>In this post, I show how to better protect your python service when making http calls to other services by guaranteeing a timeout by monkey-patching the <em>requests</em> library.</p>
+
+<p>Services tend to talk to other services. These services might be owned by you, another team at work, or made available by a third party (e.g. Google Maps API).</p>
+
+<p>How tolerant is your service to the failure of one of these upstream services? Have you tested what will happen when one of these services isn&rsquo;t responding to your requests they way you expected?</p>
+
+<p>I found this out the hard way recently when I deployed a new feature to my python service that required talking to another service. This upstream service was taking a long time to respond to my high volume of requests.</p>
+
+<p>I use the <a href="https://github.com/requests/requests">requests</a> library to call the APIs of other services. This library, has no default timeout value for requests that are taking too long. The consequence is that all of my service&rsquo;s resources were quickly exhausted and waiting for responses from this upstream service that were never going to arrive.</p>
+
+<p>The result? My service pretty much ground to a halt.</p>
+
+<p>Other similar libraries written for other languages do have a default timeout setting in place. For instance, my ruby services use <a href="https://github.com/excon/excon">excon</a> which has a default timeout of 60 seconds. This is probably still too high for most cases but its very straightforward to set your own default</p>
+
+<pre><code># config/initializers/excon.rb
+Excon.defaults[:read_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
+Excon.defaults[:write_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
+Excon.defaults[:connect_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
+
+</code></pre>
+
+<p>As for the <em>requests</em> library&hellip;</p>
+
+<blockquote>
+<p>Most requests to external servers should have a timeout attached, in case the server is not responding in a timely manner. By default, requests do not time out unless a timeout value is set explicitly. Without a timeout, your code may hang for minutes or more. <a href="http://docs.python-requests.org/en/master/user/advanced/#timeouts">link</a></p>
+</blockquote>
+
+<p>Eeek!</p>
+
+<p>This means if you or another contributor forgets to add a <code>timeout</code> paramter to your requests library call you run this risk of a request never timing out (and hogging resources in doing so)!</p>
+
+<p>Ensuring a default timeout whenever the <em>requests</em> library is used can be only be achieved (as of requests v.2.17.3 at least) using monkey patching.</p>
+
+<p>I try to only use monkey patching as a last resort as it is brittle and harder than normal to debug but since there is no global constant or environment variable that can be overwritten we&rsquo;ll have to make do with monkey patching!</p>
+
+<pre><code>import requests
+from requests.adapters import TimeoutSauce
+import configuration
+
+
+class GlobalDefaultTimeoutSauce(TimeoutSauce):
+    # A subclass of TimeoutSauce that will use a
+    # default timeout setting when overrides are not already specified
+
+    def __init__(self, *args, **kwargs):
+        default_timeout_seconds = configuration.REQUESTS_DEFAULT_TIMEOUT_S
+        connect = kwargs.get('connect') or default_timeout_seconds
+        read = kwargs.get('read') or default_timeout_seconds
+        super(GlobalDefaultTimeoutSauce, self).__init__(connect=connect, read=read)
+
+
+def monkey_patch_requests_timeout_strategy():
+    # Subsequent usages of the requests library will use a default
+    # timeout if none is specified by the caller.
+    # Call me once during your app's init phase, before any requests are made.
+    requests.adapters.TimeoutSauce = GlobalDefaultTimeoutSauce
+</code></pre>
+
+<p>To see how this is used take a look at the adapters module in the requests project. <a href="https://github.com/requests/requests/blob/master/requests/adapters.py#L416">link</a></p>
+
+<p>Now I can boost the resiliency of my service from degredations of the services I depend on! Hope this helps someone else out!</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/book/hillbilly/">
+        Hillbilly Eligy
+      </a>
+    </h1>
+
+    <span class="post-date">Sun, Jan 8, 2017</span>
+
+    
+<figure >
+    
+        <img src="http://images.gr-assets.com/books/1463569814l/27161156.jpg" />
+    
+    
+</figure>
+
+
+<p>The <a href="https://www.amazon.com/Hillbilly-Elegy-Memoir-Family-Culture/dp/0062300547">Hillbilly Eligy</a> by J. D. Vance is a memoir of a boy growing up in Ohio in a [sic] white working class family that had its fair share of hardship and troubles with addiction. Its written very straightforwardly and conjures a vivid picture of the author&rsquo;s upbringing. I read this book because it was being billed online as a good insight into a part of America that had been out of sight and out of mind. I don&rsquo;t think this wholly explains why the &lsquo;16 election swung the way it did but nevertheless a worthwhile read.</p>
+
+<p>Tidbits I took away from this book were:</p>
+
+<ul>
+<li>Be wary of the perils of living in an area that has one large main employer.</li>
+<li>If an area suddenly has no jobs, the bottom of the housing market can fall out and only the relatively rich can afford to bite the cost and move away.</li>
+<li>The author notes that the most stable/happy members of his family were those that married other halves from happier/stabler backgrounds.</li>
+<li>Adverse childhood experiences can rear their ugly head in adulthood.</li>
+<li>Addiction is the worst.</li>
+<li>Its very hard to resist a community&rsquo;s weariness and resignation about class immobility.</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/12/ornaments/">
+        Ornaments
+      </a>
+    </h1>
+
+    <span class="post-date">Thu, Dec 22, 2016</span>
+
+    
+
+<p>The morning of my flight home for the holidays I hastily came up with something for my family&rsquo;s arts&rsquo;n&rsquo;crafts gift exchange.</p>
+
+<p>Luckily the Techshop was pretty quiet so I could get some time on the Laser Cutter to draw up these fellas</p>
+
+
+<figure >
+    
+        <img src="/ornaments.jpg" />
+    
+    
+</figure>
+
+
+<p>It took three iterations to get it right, the first was too big, the second was good but needed handles. Once you&rsquo;ve got it though, its just a question of copy and paste to make lots!</p>
+
+
+<figure >
+    
+        <img src="/ornament-board.jpg" />
+    
+    
+</figure>
+
+
+
+<figure >
+    
+        <img src="/ornament.jpg" />
+    
+    
+</figure>
+
+
+<h3 id="lessons-learned">Lessons learned</h3>
+
+<ul>
+<li>The Laser Cutter slices through the MDF sheet like its butter</li>
+</ul>
+
+<h3 id="equipment-and-materials-used">Equipment and Materials used</h3>
+
+<ul>
+<li>1/4inch Walnut coated MDF Sheet (~$15)</li>
+<li>1x <a href="https://www.ulsinc.com/">Universal Laser Cutter</a> @ <a href="http://techshop.ws/tssf.html">Techshop SF</a></li>
+<li>1x Adobe Illustrator</li>
+</ul>
+
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="http://veerle.duoh.com/design/article/create_a_snowflake_in_illustrator">How to create a snowflake using Illustrator</a></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/12/danish-christmas-tree/">
+        Danish Christmas Tree
+      </a>
+    </h1>
+
+    <span class="post-date">Thu, Dec 22, 2016</span>
+
+    
+
+
+<figure >
+    
+        <img src="/tree.jpg" />
+    
+    
+</figure>
+
+
+<p>Late November I made this Wooden Dowel Christmas Tree with advent-style felt ornaments (with some talented friends helping with all the ornaments).</p>
+
+<p>The tree is collapsible (you just pull the branches out) which is useful for the rest of the year when its not Christmas!</p>
+
+
+<figure >
+    
+        <img src="/decorations.jpg" />
+    
+    
+</figure>
+
+
+
+<figure >
+    
+        <img src="/base_of_tree.jpg" />
+    
+    
+</figure>
+
+
+<h3 id="lessons-learned">Lessons learned</h3>
+
+<ul>
+<li>Dowel is cheap</li>
+<li>25 hand-stiched ornaments can take a while</li>
+<li>Once you&rsquo;re half way through you have to finish!</li>
+</ul>
+
+<h3 id="resources-and-references">Resources and References</h3>
+
+<ul>
+<li><a href="http://www.nalleshouse.com/2013/12/diy-danish-wooden-dowel-tree.html">Nalle&rsquo;s House Blog</a></li>
+<li><a href="http://www.filigrantrae.dk/">Filigrantre</a></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/12/evensteven-released/">
+        Even Steven - available for download
+      </a>
+    </h1>
+
+    <span class="post-date">Sun, Dec 4, 2016</span>
+
+    <p>Even Steven is now available as a free download on the <a href="https://itunes.apple.com/us/app/even-steven-group-expenses/id1163572319?mt=8">App Store</a></p>
+
+<p><a href="https://itunes.apple.com/us/app/even-steven-group-expenses/id1163572319?mt=8" style="display:inline-block;overflow:hidden;background:url(//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a></p>
+
+<p>Feedback welcomed via <a href="https://www.twitter.com/oliwilks">Twitter</a></p>
+
+<p>Thanks to people that helped test it!</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/10/evensteven/">
+        Even Steven - a group expenses app for iOS
+      </a>
+    </h1>
+
+    <span class="post-date">Sun, Oct 9, 2016</span>
+
+    
+<figure >
+    
+        <img src="/evensteven-preview1.png" />
+    
+    
+</figure>
+
+
+<p><strong>Update</strong> Now available on the App Store!</p>
+
+<p><a href="https://itunes.apple.com/us/app/even-steven-group-expenses/id1163572319?mt=8" style="display:inline-block;overflow:hidden;background:url(//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a></p>
+
+<p>Even Steven is a handy app that records group spending for events such as holidays and suggests who needs to pay what to whom in order to get even!</p>
+
+<p>Even Steven is designed for iPhone and:</p>
+
+<ul>
+<li>requires no signing up</li>
+<li>does not require an internet connection (ideal when holidaying abroad and not having data)</li>
+</ul>
+
+<p>Behind the scenes, Even Steven is a pure Swift3 iOS app and uses no third party libraries.</p>
+
+<p>
+<figure >
+    
+        <img src="/evensteven-preview2.png" />
+    
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/evensteven-preview3.png" />
+    
+    
+</figure>
+</p>
+
+<p>Even Steven 1.0 is still undergoing beta testing amongst friends but will hopefully be available for free to all before Christmas!</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/08/tealight/">
+        Walnut Tealight Holder
+      </a>
+    </h1>
+
+    <span class="post-date">Sun, Aug 14, 2016</span>
+
+    
+
+
+<figure >
+    
+        <img src="/tealight.jpg" />
+    
+    
+    <figcaption>
+        <h4>Walnut Tealight Holder</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>Still horrendous at making things with my hands but will keep trying! This is a tealight holder that is basically three bits of wood, two drill holes and glue.</p>
+
+<ul>
+<li>Band Saw</li>
+<li>Pillar Drilling Machine</li>
+<li>1 <sup>1</sup>&frasl;<sub>2</sub>&rdquo; Forstner Bit</li>
+<li>Sand Paper</li>
+<li>Wood Glue</li>
+<li>Circular Saw</li>
+</ul>
+
+<h3 id="lessons-learnt">Lessons learnt</h3>
+
+<h4 id="buying-wood">Buying Wood</h4>
+
+<ul>
+<li>Walnut is a beautiful dark hardwood</li>
+<li>Walnut is expensive</li>
+<li>A DIY Store will sell wood at fixed lengths, but will cut it into pieces for you.</li>
+<li>My car can fit about 10feet of wood just!</li>
+</ul>
+
+<h4 id="prepping">Prepping</h4>
+
+<ul>
+<li>Make a detailed plan beforehand.</li>
+<li>If it doesn&rsquo;t work on paper it won&rsquo;t work in the shop (this applies to coding too btw). Draw out everything to scale.</li>
+<li>Use SketchUp or some other CAD software if you want to have reusable plans.</li>
+<li>Itemize the equipment you&rsquo;ll need. Nothing more frustrating than being halfway through and realising you don&rsquo;t have any sanding paper!</li>
+<li>Use Painters Tape or Super77 glue to stick your paper plans onto real wood.</li>
+</ul>
+
+<h4 id="in-the-shop">In the Shop</h4>
+
+<ul>
+<li>Sanding concave curves is hard without a spindle sander</li>
+<li>Always sand with the grain</li>
+<li>Wood Glue needs clamps and needs to sit clamped for at least 30mins</li>
+<li>Have a Pencil and a backup!</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/07/tensorflow_101/">
+        Tensorflow 101
+      </a>
+    </h1>
+
+    <span class="post-date">Tue, Jul 5, 2016</span>
+
+    <p>Tensorflow seems like a pretty exciting alternative to <code>scikit-learn</code> that works just as effectively for beginners as it does for pros.</p>
+
+<p>For my <a href="https://squareup.com/careers">team</a>&rsquo;s monthly drink&rsquo;n&rsquo;sync I wrote an interactive worksheet on using TensorFlow to build a handwritten number detector.</p>
+
+<p>Check it out on <a href="https://github.com/oliw/tensorflow_tutorial">github</a>!</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/05/pong/">
+        Pong in &lt; 250 lines of JS!
+      </a>
+    </h1>
+
+    <span class="post-date">Fri, May 27, 2016</span>
+
+    
+
+<p>This is a crude example of a playable game that can be expressed in less than 250 lines of code!</p>
+
+<h2 id="demo">Demo</h2>
+
+
+
+
+
+
+
+
+
+
+
+<script
+    data-slug-hash="pbovov"
+    data-user="jorin"
+    data-height="500"
+    data-default-tab="result"
+    data-theme-id="8862"
+    class='codepen'
+    async
+    src="//codepen.io/assets/embed/ei.js"
+></script>
+
+<h2 id="code">Code</h2>
+
+<p>
+<!DOCTYPE html>
+<html>
+<body>
+  <canvas id="game"> </canvas>
+  <script type="text/javascript">
+    var game = (function() {
+      var Width = 800, Height = 450;
+      var canvas = document.getElementById("game");
+      var FPS = 1000 / 60;
+      canvas.width = Width;
+      canvas.height = Height;
+      canvas.setAttribute('tabindex', 1);
+      var ctx = canvas.getContext("2d");
+
+      var BG = {
+        Color: '#333',
+        Paint: function() {
+          ctx.fillStyle = this.Color;
+          ctx.fillRect(0, 0, Width, Height);
+        }
+      };
+
+      var Ball = { Radius: 5, Color: '#999', X: 0, Y: 0, VelX: 0, VelY: 0 };
+      Ball.Paint = function() {
+        ctx.beginPath();
+        ctx.fillStyle = this.Color;
+        ctx.arc(this.X, this.Y, this.Radius, 0, Math.PI * 2, false);
+        ctx.fill();
+        this.Update();
+      };
+      Ball.Update = function() {
+        this.X += this.VelX;
+        this.Y += this.VelY;
+      };
+      Ball.Reset = function() {
+        this.X = Width / 2;
+        this.Y = Height / 2;
+        this.VelX = (!!Math.round(Math.random() * 1) ? 1.5 : -1.5);
+        this.VelY = (!!Math.round(Math.random() * 1) ? 1.5 : -1.5);
+      };
+
+      function Paddle(position) {
+        this.Color = '#999';
+        this.Width = 5;
+        this.Height = 100;
+        this.X = 0;
+        this.Y = Height / 2 - this.Height / 2;
+        this.Score = 0;
+        if (position == 'left')
+          this.X = 0;
+        else this.X = Width - this.Width;
+        this.Paint = function() {
+          ctx.fillStyle = this.Color;
+          ctx.fillRect(this.X, this.Y, this.Width, this.Height);
+          ctx.fillStyle = this.Color;
+          ctx.font = "normal 10pt Calibri";
+          if (position == 'left') {
+            ctx.textAlign = "left";
+            ctx.fillText("score: " + Player.Score, 10, 10);
+          } else {
+            ctx.textAlign = "right";
+            ctx.fillText("score: " + Computer.Score, Width - 10, 10);
+          }
+        };
+        this.IsCollision = function() {
+          if (Ball.X - Ball.Radius > this.Width + this.X || this.X > Ball.Radius * 2 + Ball.X - Ball.Radius)
+            return false;
+          if (Ball.Y - Ball.Radius > this.Height + this.Y || this.Y > Ball.Radius * 2 + Ball.Y - Ball.Radius)
+            return false;
+          return true;
+        };
+      };
+
+      window.requestAnimFrame = (function() {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+          return window.setTimeout(callback, FPS);
+        };
+      })();
+      window.cancelRequestAnimFrame = (function() {
+        return window.cancelAnimationFrame || window.webkitCancelRequestAnimationFrame || window.mozCancelRequestAnimationFrame || window.oCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame || clearTimeout
+      })();
+
+      var Computer = new Paddle();
+      var Player = new Paddle('left');
+
+      function Paint() {
+        ctx.beginPath();
+        BG.Paint();
+        Computer.Paint();
+        Player.Paint();
+        Ball.Paint();
+      }
+
+      function MouseMove(e) {
+        Player.Y = e.pageY - Player.Height / 2;
+      }
+      canvas.addEventListener("mousemove", MouseMove, true);
+
+      function Loop() {
+        init = requestAnimFrame(Loop);
+        Paint();
+        if (Player.IsCollision() || Computer.IsCollision()) {
+          Ball.VelX = Ball.VelX * -1;
+          Ball.VelX += (Ball.VelX > 0 ? 0.5 : -0.5);
+          if (Math.abs(Ball.VelX) > Ball.Radius * 1.5)
+            Ball.VelX = (Ball.VelX > 0 ? Ball.Radius * 1.5 : Ball.Radius * -1.5);
+        }
+        if (Ball.Y - Ball.Radius < 0 || Ball.Y + Ball.Radius > Height)
+          Ball.VelY = Ball.VelY * -1;
+        if (Ball.X - Ball.Radius <= 0) {
+          Computer.Score++;
+          Ball.Reset();
+        } else if (Ball.X + Ball.Radius > Width) {
+          Player.Score++;
+          Ball.Reset();
+        }
+        if (Computer.Score === 10)
+          GameOver(false);
+        else if (Player.Score === 10)
+          GameOver(true);
+        Computer.Y = (Computer.Y + Computer.Height / 2 < Ball.Y ? Computer.Y + Computer.Vel : Computer.Y - Computer.Vel);
+      };
+
+      function GameOver(win) {
+        cancelRequestAnimFrame(init);
+        BG.Paint();
+        ctx.fillStyle = "#999";
+        ctx.font = "bold 40px Calibri";
+        ctx.textAlign = "center";
+        ctx.fillText((win ? "YOU WON!" : "GAME OVER"), Width / 2, Height / 2);
+        ctx.font = "normal 16px Calibri";
+        ctx.fillText("refresh to replay", Width / 2, Height / 2 + 20);
+      }
+      return {
+        Start: function() {
+          Ball.Reset();
+          Player.Score = 0;
+          Computer.Score = 0;
+          Computer.Vel = 1.25;
+          Loop();
+        }
+      };
+    })();
+    game.Start();
+  </script>
+</body>
+</html>
+</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/about/">
+        About
+      </a>
+    </h1>
+
+    <span class="post-date">Thu, May 26, 2016</span>
+
+    <p>I&rsquo;m a Software Engineer @ Square, currently working on the suite of projects that power the Logistics for Caviar. I have competency in a variety of languages and frameworks with a particular focus on Java, Ruby, Python and Javascipt.</p>
+
+<p>Besides engineering, I spend as much time as I can hiking and backpacking through California. I also enjoy running, music, reading fiction and independant cinema.</p>
+
+<p>I have a first-class Engineering Masters degree in Computing from Imperial College London. My final year project concerning Motion Stabilisation methods for Robotically Assisted Heart Surgery was awarded the Distinguished Project status. Outside of the department, I enjoyed serving as Technical Manager for ICRadio.</p>
+
+<p>I strive to be affable, and endeavour to be forever self-improving.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://www.oliverwilkie.com/2016/03/reroku/">
+        Reroku (Heroku on a Raspberry Pi)
+      </a>
+    </h1>
+
+    <span class="post-date">Tue, Mar 1, 2016</span>
+
+    <p>My team recently switched our applications from Heroku to barebones AWS. The experience made me truely appreciate just how effective Heroku is and how it has made deploying apps as painfree as could be. After all, what good is making an app if nobody can see it!</p>
+
+<p>I&rsquo;ve also been a huge fan of my Raspberry Pi. Every time I look at it, I feel challenged to think of a cool use for it.</p>
+
+<p>So with that in mind, I decided to take a shot of making a proof-of-concept of a Heroku-like service that can run on a raspberry pi. It was a great exercise in Unix scripting and gluing a few things together. Plus I got to learn more about the innards of <code>git</code> and what happens when you do a <code>git push</code>!</p>
+
+<p>Kudos to the Dokku project which heavily inspired me.</p>
+
+<p>Its a proof-of-concept but I&rsquo;m reluctant to invest time making a stable version since I think something like docker+kubernetes might be just around the corner for the Pi and I&rsquo;d rather invest time figuring out how to make an accessible interface for that!</p>
+
+<p>Check it out on <a href="https://github.com/oliw/reroku-poc">github</a>!</p>
+
+  </div>
+  
+</div>
+</div>
+
+  </body>
+</html>
