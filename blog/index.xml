@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Oliver Wilkie</title>
+    <link>http://www.oliverwilkie.com/blog/</link>
+    <description>Recent content in Blogs on Oliver Wilkie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Oliver Wilkie</copyright>
+    <lastBuildDate>Sun, 11 Jun 2017 15:02:32 +0100</lastBuildDate>
+    
+	<atom:link href="http://www.oliverwilkie.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Protect your Python app from Timeouts</title>
+      <link>http://www.oliverwilkie.com/2017/06/python-requests/</link>
+      <pubDate>Sun, 11 Jun 2017 15:02:32 +0100</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2017/06/python-requests/</guid>
+      <description>In this post, I show how to better protect your python service when making http calls to other services by guaranteeing a timeout by monkey-patching the requests library.
+Services tend to talk to other services. These services might be owned by you, another team at work, or made available by a third party (e.g. Google Maps API).
+How tolerant is your service to the failure of one of these upstream services?</description>
+    </item>
+    
+    <item>
+      <title>Ornaments</title>
+      <link>http://www.oliverwilkie.com/2016/12/ornaments/</link>
+      <pubDate>Thu, 22 Dec 2016 15:10:35 -0800</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/12/ornaments/</guid>
+      <description>The morning of my flight home for the holidays I hastily came up with something for my family&amp;rsquo;s arts&amp;rsquo;n&amp;rsquo;crafts gift exchange.
+Luckily the Techshop was pretty quiet so I could get some time on the Laser Cutter to draw up these fellas
+ It took three iterations to get it right, the first was too big, the second was good but needed handles. Once you&amp;rsquo;ve got it though, its just a question of copy and paste to make lots!</description>
+    </item>
+    
+    <item>
+      <title>Danish Christmas Tree</title>
+      <link>http://www.oliverwilkie.com/2016/12/danish-christmas-tree/</link>
+      <pubDate>Thu, 22 Dec 2016 14:28:56 -0800</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/12/danish-christmas-tree/</guid>
+      <description>Late November I made this Wooden Dowel Christmas Tree with advent-style felt ornaments (with some talented friends helping with all the ornaments).
+The tree is collapsible (you just pull the branches out) which is useful for the rest of the year when its not Christmas!
+  Lessons learned  Dowel is cheap 25 hand-stiched ornaments can take a while Once you&amp;rsquo;re half way through you have to finish!</description>
+    </item>
+    
+    <item>
+      <title>Even Steven - available for download</title>
+      <link>http://www.oliverwilkie.com/2016/12/evensteven-released/</link>
+      <pubDate>Sun, 04 Dec 2016 12:18:28 -0800</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/12/evensteven-released/</guid>
+      <description>Even Steven is now available as a free download on the App Store
+
+Feedback welcomed via Twitter
+Thanks to people that helped test it!</description>
+    </item>
+    
+    <item>
+      <title>Even Steven - a group expenses app for iOS</title>
+      <link>http://www.oliverwilkie.com/2016/10/evensteven/</link>
+      <pubDate>Sun, 09 Oct 2016 20:19:43 -0400</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/10/evensteven/</guid>
+      <description>Update Now available on the App Store!
+
+Even Steven is a handy app that records group spending for events such as holidays and suggests who needs to pay what to whom in order to get even!
+Even Steven is designed for iPhone and:
+ requires no signing up does not require an internet connection (ideal when holidaying abroad and not having data)  Behind the scenes, Even Steven is a pure Swift3 iOS app and uses no third party libraries.</description>
+    </item>
+    
+    <item>
+      <title>Walnut Tealight Holder</title>
+      <link>http://www.oliverwilkie.com/2016/08/tealight/</link>
+      <pubDate>Sun, 14 Aug 2016 17:33:43 -0700</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/08/tealight/</guid>
+      <description>Walnut Tealight Holder   Still horrendous at making things with my hands but will keep trying! This is a tealight holder that is basically three bits of wood, two drill holes and glue.
+ Band Saw Pillar Drilling Machine 1 1&amp;frasl;2&amp;rdquo; Forstner Bit Sand Paper Wood Glue Circular Saw  Lessons learnt Buying Wood  Walnut is a beautiful dark hardwood Walnut is expensive A DIY Store will sell wood at fixed lengths, but will cut it into pieces for you.</description>
+    </item>
+    
+    <item>
+      <title>Tensorflow 101</title>
+      <link>http://www.oliverwilkie.com/2016/07/tensorflow_101/</link>
+      <pubDate>Tue, 05 Jul 2016 20:30:00 -0700</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/07/tensorflow_101/</guid>
+      <description>Tensorflow seems like a pretty exciting alternative to scikit-learn that works just as effectively for beginners as it does for pros.
+For my team&amp;rsquo;s monthly drink&amp;rsquo;n&amp;rsquo;sync I wrote an interactive worksheet on using TensorFlow to build a handwritten number detector.
+Check it out on github!</description>
+    </item>
+    
+    <item>
+      <title>Pong in &lt; 250 lines of JS!</title>
+      <link>http://www.oliverwilkie.com/2016/05/pong/</link>
+      <pubDate>Fri, 27 May 2016 15:02:32 +0100</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/05/pong/</guid>
+      <description>This is a crude example of a playable game that can be expressed in less than 250 lines of code!
+Demo  Code     var game = (function() { var Width = 800, Height = 450; var canvas = document.getElementById(&#34;game&#34;); var FPS = 1000 / 60; canvas.width = Width; canvas.height = Height; canvas.setAttribute(&#39;tabindex&#39;, 1); var ctx = canvas.getContext(&#34;2d&#34;); var BG = { Color: &#39;#333&#39;, Paint: function() { ctx.</description>
+    </item>
+    
+    <item>
+      <title>Reroku (Heroku on a Raspberry Pi)</title>
+      <link>http://www.oliverwilkie.com/2016/03/reroku/</link>
+      <pubDate>Tue, 01 Mar 2016 08:48:57 -0700</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2016/03/reroku/</guid>
+      <description>My team recently switched our applications from Heroku to barebones AWS. The experience made me truely appreciate just how effective Heroku is and how it has made deploying apps as painfree as could be. After all, what good is making an app if nobody can see it!
+I&amp;rsquo;ve also been a huge fan of my Raspberry Pi. Every time I look at it, I feel challenged to think of a cool use for it.</description>
+    </item>
+    
+  </channel>
+</rss>

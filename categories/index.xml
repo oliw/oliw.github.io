@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Oliver Wilkie</title>
+    <link>http://www.oliverwilkie.com/categories/</link>
+    <description>Recent content in Categories on Oliver Wilkie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Oliver Wilkie</copyright>
+    
+	<atom:link href="http://www.oliverwilkie.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Coding</title>
+      <link>http://www.oliverwilkie.com/categories/coding/</link>
+      <pubDate>Sun, 11 Jun 2017 15:02:32 +0100</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/categories/coding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Woodshop</title>
+      <link>http://www.oliverwilkie.com/categories/woodshop/</link>
+      <pubDate>Sun, 14 Aug 2016 17:33:43 -0700</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/categories/woodshop/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
