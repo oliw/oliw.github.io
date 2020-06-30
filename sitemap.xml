@@ -3,6 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://oliverwilkie.com/about/</loc>
+    <lastmod>2020-05-26T17:28:05+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/</loc>
+    <lastmod>2020-05-26T17:28:05+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://oliverwilkie.com/blog/</loc>
     <lastmod>2017-06-30T15:02:32+01:00</lastmod>
     <priority>0</priority>
@@ -23,12 +34,6 @@
   <url>
     <loc>https://oliverwilkie.com/2017/06/pi-blog/</loc>
     <lastmod>2017-06-30T15:02:32+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oliverwilkie.com/</loc>
-    <lastmod>2017-06-30T15:02:32+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -86,11 +91,6 @@
   <url>
     <loc>https://oliverwilkie.com/2016/05/pong/</loc>
     <lastmod>2016-05-27T15:02:32+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oliverwilkie.com/about/</loc>
-    <lastmod>2016-05-26T17:28:05+01:00</lastmod>
   </url>
   
   <url>

@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Fri, 30 Jun 2017 15:02:32 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 17:28:05 +0100</lastBuildDate>
     
 	<atom:link href="https://oliverwilkie.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>https://oliverwilkie.com/about/</link>
+      <pubDate>Tue, 26 May 2020 17:28:05 +0100</pubDate>
+      
+      <guid>https://oliverwilkie.com/about/</guid>
+      <description>Oliver Wilkie is a software engineer in San Francisco.
+Oli spends a lot of time writing ruby code at Flexport to automate and scale tasks such as boat tracking, boat timetables and cost prediction. Before that Oli spent several years down the road at Square working on logistics problems of a different kind. Oli’s primary focus wherever he goes is getting stuff done by writing software efficiently and applying it wisely to areas that haven’t fully benefited from it so far.</description>
+    </item>
     
     <item>
       <title>Hosting this blog on a Raspberry Pi</title>
@@ -117,16 +127,6 @@ Check it out on github!</description>
       <guid>https://oliverwilkie.com/2016/05/pong/</guid>
       <description>This is a crude example of a playable game that can be expressed in less than 250 lines of code!
 Demo  Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://oliverwilkie.com/about/</link>
-      <pubDate>Thu, 26 May 2016 17:28:05 +0100</pubDate>
-      
-      <guid>https://oliverwilkie.com/about/</guid>
-      <description>Oliver Wilkie is a software engineer in San Francisco.
-Oli spends a lot of time writing ruby code at Flexport to automate and scale tasks such as boat tracking, boat timetables and cost prediction. Before that Oli spent several years down the road at Square working on logistics problems of a different kind. Oli’s primary focus wherever he goes is getting stuff done by writing software efficiently and applying it wisely to areas that haven’t fully benefited from it so far.</description>
     </item>
     
     <item>
