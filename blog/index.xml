@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Sun, 11 Jun 2017 15:02:32 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2020 21:33:47 -0700</lastBuildDate>
     
 	<atom:link href="https://oliverwilkie.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Looker might slow you down</title>
+      <link>https://oliverwilkie.com/2020/06/looker/</link>
+      <pubDate>Mon, 29 Jun 2020 21:33:47 -0700</pubDate>
+      
+      <guid>https://oliverwilkie.com/2020/06/looker/</guid>
+      <description>At the beginning of this year the data analysts and engineers at my company undertook two large migration feats. They moved our data warehouse into Snowflake and secondly, they moved our analytics tooling away from Periscope and into Looker.
+Looker is heralded as a way for non-SQL savvy users to self serve and build their own data reports and tables without leaning on a Data Analyst who knows SQL to do it for them.</description>
+    </item>
     
     <item>
       <title>Protect your Python app from Timeouts</title>
