@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Sun, 11 Jun 2017 15:02:32 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 30 Jun 2017 15:02:32 +0100</lastBuildDate>
     
 	<atom:link href="http://www.oliverwilkie.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hosting this blog on a Raspberry Pi</title>
+      <link>http://www.oliverwilkie.com/2017/06/pi-blog/</link>
+      <pubDate>Fri, 30 Jun 2017 15:02:32 +0100</pubDate>
+      
+      <guid>http://www.oliverwilkie.com/2017/06/pi-blog/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Protect your Python app from Timeouts</title>
@@ -40,7 +49,7 @@ How tolerant is your service to the failure of one of these upstream services?</
       <guid>http://www.oliverwilkie.com/2016/12/ornaments/</guid>
       <description>The morning of my flight home for the holidays I hastily came up with something for my family&amp;rsquo;s arts&amp;rsquo;n&amp;rsquo;crafts gift exchange.
 Luckily the Techshop was pretty quiet so I could get some time on the Laser Cutter to draw up these fellas
- It took three iterations to get it right, the first was too big, the second was good but needed handles. Once you&amp;rsquo;ve got it though, its just a question of copy and paste to make lots!</description>
+  It took three iterations to get it right, the first was too big, the second was good but needed handles. Once you&amp;rsquo;ve got it though, its just a question of copy and paste to make lots!</description>
     </item>
     
     <item>
@@ -51,7 +60,7 @@ Luckily the Techshop was pretty quiet so I could get some time on the Laser Cutt
       <guid>http://www.oliverwilkie.com/2016/12/danish-christmas-tree/</guid>
       <description>Late November I made this Wooden Dowel Christmas Tree with advent-style felt ornaments (with some talented friends helping with all the ornaments).
 The tree is collapsible (you just pull the branches out) which is useful for the rest of the year when its not Christmas!
-  Lessons learned  Dowel is cheap 25 hand-stiched ornaments can take a while Once you&amp;rsquo;re half way through you have to finish!</description>
+    Lessons learned  Dowel is cheap 25 hand-stiched ornaments can take a while Once you&amp;rsquo;re half way through you have to finish!</description>
     </item>
     
     <item>
@@ -107,7 +116,7 @@ Check it out on github!</description>
       
       <guid>http://www.oliverwilkie.com/2016/05/pong/</guid>
       <description>This is a crude example of a playable game that can be expressed in less than 250 lines of code!
-Demo  Code     var game = (function() { var Width = 800, Height = 450; var canvas = document.getElementById(&#34;game&#34;); var FPS = 1000 / 60; canvas.width = Width; canvas.height = Height; canvas.setAttribute(&#39;tabindex&#39;, 1); var ctx = canvas.getContext(&#34;2d&#34;); var BG = { Color: &#39;#333&#39;, Paint: function() { ctx.</description>
+Demo  Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.</description>
     </item>
     
     <item>
