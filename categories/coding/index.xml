@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Coding on O.</title>
-    <link>http://www.oliverwilkie.com/categories/coding/</link>
+    <link>https://oliverwilkie.com/categories/coding/</link>
     <description>Recent content in Coding on O.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
     <lastBuildDate>Fri, 30 Jun 2017 15:02:32 +0100</lastBuildDate>
     
-	<atom:link href="http://www.oliverwilkie.com/categories/coding/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://oliverwilkie.com/categories/coding/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hosting this blog on a Raspberry Pi</title>
-      <link>http://www.oliverwilkie.com/2017/06/pi-blog/</link>
+      <link>https://oliverwilkie.com/2017/06/pi-blog/</link>
       <pubDate>Fri, 30 Jun 2017 15:02:32 +0100</pubDate>
       
-      <guid>http://www.oliverwilkie.com/2017/06/pi-blog/</guid>
+      <guid>https://oliverwilkie.com/2017/06/pi-blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Protect your Python app from Timeouts</title>
-      <link>http://www.oliverwilkie.com/2017/06/python-requests/</link>
+      <link>https://oliverwilkie.com/2017/06/python-requests/</link>
       <pubDate>Sun, 11 Jun 2017 15:02:32 +0100</pubDate>
       
-      <guid>http://www.oliverwilkie.com/2017/06/python-requests/</guid>
+      <guid>https://oliverwilkie.com/2017/06/python-requests/</guid>
       <description>In this post, I show how to better protect your python service when making http calls to other services by guaranteeing a timeout by monkey-patching the requests library.
 Services tend to talk to other services. These services might be owned by you, another team at work, or made available by a third party (e.g. Google Maps API).
 How tolerant is your service to the failure of one of these upstream services?</description>
@@ -34,10 +34,10 @@ How tolerant is your service to the failure of one of these upstream services?</
     
     <item>
       <title>Tensorflow 101</title>
-      <link>http://www.oliverwilkie.com/2016/07/tensorflow_101/</link>
+      <link>https://oliverwilkie.com/2016/07/tensorflow_101/</link>
       <pubDate>Tue, 05 Jul 2016 20:30:00 -0700</pubDate>
       
-      <guid>http://www.oliverwilkie.com/2016/07/tensorflow_101/</guid>
+      <guid>https://oliverwilkie.com/2016/07/tensorflow_101/</guid>
       <description>Tensorflow seems like a pretty exciting alternative to scikit-learn that works just as effectively for beginners as it does for pros.
 For my team&amp;rsquo;s monthly drink&amp;rsquo;n&amp;rsquo;sync I wrote an interactive worksheet on using TensorFlow to build a handwritten number detector.
 Check it out on github!</description>
@@ -45,20 +45,20 @@ Check it out on github!</description>
     
     <item>
       <title>Pong in &lt; 250 lines of JS!</title>
-      <link>http://www.oliverwilkie.com/2016/05/pong/</link>
+      <link>https://oliverwilkie.com/2016/05/pong/</link>
       <pubDate>Fri, 27 May 2016 15:02:32 +0100</pubDate>
       
-      <guid>http://www.oliverwilkie.com/2016/05/pong/</guid>
+      <guid>https://oliverwilkie.com/2016/05/pong/</guid>
       <description>This is a crude example of a playable game that can be expressed in less than 250 lines of code!
 Demo  Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.</description>
     </item>
     
     <item>
       <title>Reroku (Heroku on a Raspberry Pi)</title>
-      <link>http://www.oliverwilkie.com/2016/03/reroku/</link>
+      <link>https://oliverwilkie.com/2016/03/reroku/</link>
       <pubDate>Tue, 01 Mar 2016 08:48:57 -0700</pubDate>
       
-      <guid>http://www.oliverwilkie.com/2016/03/reroku/</guid>
+      <guid>https://oliverwilkie.com/2016/03/reroku/</guid>
       <description>My team recently switched our applications from Heroku to barebones AWS. The experience made me truely appreciate just how effective Heroku is and how it has made deploying apps as painfree as could be. After all, what good is making an app if nobody can see it!
 I&amp;rsquo;ve also been a huge fan of my Raspberry Pi. Every time I look at it, I feel challenged to think of a cool use for it.</description>
     </item>
