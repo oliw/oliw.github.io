@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Oliver Wilkie</title>
-    <link>https://oliverwilkie.com/</link>
-    <description>Recent content on Oliver Wilkie</description>
+    <title>Posts on Oliver Wilkie</title>
+    <link>https://oliverwilkie.com/posts/</link>
+    <description>Recent content in Posts on Oliver Wilkie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
     <lastBuildDate>Sat, 29 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://oliverwilkie.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://oliverwilkie.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -39,15 +39,6 @@
       <description>In this post, I show how to better protect your python service when making http calls to other services by guaranteeing a timeout by monkey-patching the requests library.
 Services tend to talk to other services. These services might be owned by you, another team at work, or made available by a third party (e.g. Google Maps API).
 How tolerant is your service to the failure of one of these upstream services?</description>
-    </item>
-    
-    <item>
-      <title>Hillbilly Eligy</title>
-      <link>https://oliverwilkie.com/reviews/hillbilly/</link>
-      <pubDate>Sun, 08 Jan 2017 16:44:36 -0800</pubDate>
-      
-      <guid>https://oliverwilkie.com/reviews/hillbilly/</guid>
-      <description>The Hillbilly Eligy by J. D. Vance is a memoir of a boy growing up in Ohio in a [sic] white working class family that had its fair share of hardship and troubles with addiction. Its written very straightforwardly and conjures a vivid picture of the author&amp;rsquo;s upbringing. I read this book because it was being billed online as a good insight into a part of America that had been out of sight and out of mind.</description>
     </item>
     
     <item>
@@ -124,16 +115,6 @@ Check it out on github!</description>
       <guid>https://oliverwilkie.com/2016/05/pong/</guid>
       <description>This is a crude example of a playable game that can be expressed in less than 250 lines of code!
 Demo Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.setAttribute(&amp;#39;tabindex&amp;#39;, 1); 13 var ctx = canvas.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://oliverwilkie.com/about/</link>
-      <pubDate>Thu, 26 May 2016 17:28:05 +0100</pubDate>
-      
-      <guid>https://oliverwilkie.com/about/</guid>
-      <description>Hi, I&amp;rsquo;m Oli and I work as a software engineer in San Francisco.
-I spend a lot of time writing ruby code for Flexport to automate and scale tasks such as boat tracking, boat timetables and cost prediction. Before that I spent several years down the road at Square working on logistics problems. My primary focus wherever I go is getting stuff done by writing software efficiently and applying it wisely to areas that haven’t fully benefited from it so far.</description>
     </item>
     
     <item>

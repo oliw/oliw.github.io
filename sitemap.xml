@@ -1,11 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://oliverwilkie.com/blog/</loc>
-    <lastmod>2020-06-29T21:33:47-07:00</lastmod>
-    <priority>0</priority>
+    <loc>https://oliverwilkie.com/2020/08/rapid-app-making/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/posts/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -14,21 +23,13 @@
   </url>
   
   <url>
-    <loc>https://oliverwilkie.com/</loc>
-    <lastmod>2020-06-29T21:33:47-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://oliverwilkie.com/categories/</loc>
     <lastmod>2017-06-11T15:02:32+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://oliverwilkie.com/categories/coding/</loc>
     <lastmod>2017-06-11T15:02:32+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -37,13 +38,12 @@
   </url>
   
   <url>
-    <loc>https://oliverwilkie.com/book/</loc>
+    <loc>https://oliverwilkie.com/reviews/hillbilly/</loc>
     <lastmod>2017-01-08T16:44:36-08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://oliverwilkie.com/book/hillbilly/</loc>
+    <loc>https://oliverwilkie.com/reviews/</loc>
     <lastmod>2017-01-08T16:44:36-08:00</lastmod>
   </url>
   
@@ -75,7 +75,6 @@
   <url>
     <loc>https://oliverwilkie.com/categories/woodshop/</loc>
     <lastmod>2016-08-14T17:33:43-07:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

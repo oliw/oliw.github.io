@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Coding on O.</title>
+    <title>Coding on Oliver Wilkie</title>
     <link>https://oliverwilkie.com/categories/coding/</link>
-    <description>Recent content in Coding on O.</description>
+    <description>Recent content in Coding on Oliver Wilkie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
@@ -41,7 +41,7 @@ Check it out on github!</description>
       
       <guid>https://oliverwilkie.com/2016/05/pong/</guid>
       <description>This is a crude example of a playable game that can be expressed in less than 250 lines of code!
-Demo  Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.</description>
+Demo Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.setAttribute(&amp;#39;tabindex&amp;#39;, 1); 13 var ctx = canvas.</description>
     </item>
     
     <item>

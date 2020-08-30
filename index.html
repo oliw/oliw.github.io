@@ -3,13 +3,13 @@
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
   
-  <title>O.</title>
+  <title>Oliver Wilkie</title>
   
 
   
@@ -23,22 +23,26 @@
   <link rel="shortcut icon" href="/favicon.png">
 
   
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="O." />
+  <link href="https://oliverwilkie.com/index.xml" rel="alternate" type="application/rss+xml" title="Oliver Wilkie" />
 </head>
 
-<body class=" ">
+<body class="theme-base-0b ">
 
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://oliverwilkie.com/"><h1>O.</h1></a>
+      <a href="https://oliverwilkie.com/"><h1>Oliver Wilkie</h1></a>
       <p class="lead">
-       coding and other projects by Oliver Wilkie 
+       Software Engineer 
       </p>
     </div>
 
     <ul class="sidebar-nav">
       <li><a href="/">Home</a> </li>
+      
+        <li><a href="/posts"> Posts </a></li>
+      
+        <li><a href="/reviews"> Reviews </a></li>
       
         <li><a href="/about/"> About </a></li>
       
@@ -55,559 +59,26 @@
       
   <div class="post">
     <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2020/06/looker/">
-        Looker might slow you down
+      <a href="https://oliverwilkie.com/posts/">
+        Posts
       </a>
     </h1>
 
-    <span class="post-date">Mon, Jun 29, 2020</span>
+    <span class="post-date">Sat, Aug 29, 2020</span>
 
     
-
-<p>At the beginning of this year the data analysts and engineers at my company undertook two large migration feats. They moved our data warehouse into Snowflake and secondly, they moved our analytics tooling away from Periscope and into Looker.</p>
-
-<p>Looker is heralded as a way for non-SQL savvy users to self serve and build their own data reports and tables without leaning on a Data Analyst who knows SQL to do it for them.</p>
-
-<p>On one hand Looker has delivered on that promise; people in the business are increasingly getting used to building their own Dashboards. On the other hand, I&rsquo;ve noticed my Data Analysts are as busy as they&rsquo;ve ever been, if not more. What gives?</p>
-
-<h2 id="looker-creates-busywork-for-your-analysts">Looker creates busywork for your Analysts</h2>
-
-<p>Looker is not a zero-config plug and play service. Its not the case that you can just hook it up to your data warehouse and your tables are auto discovered and configured automatically.</p>
-
-<p>In fact, what I&rsquo;ve noticed is that Data Analysts in Looker shops are spending a solid chunk of their time writing out LookML; a Domain-specific-language (read Vendor Lockin) that Looker requires Analysts to use to redefine the schema of the underlying data models in a format that Looker understands. These schemas are called views and you need at least one view for each table in your database (a huge task if you are an enterprise company with hundreds of tables). In addition to defining views, explores (another custom Looker concept) have to be defined by the Analyst before an end user can start building off the data.</p>
-
-<h2 id="looker-hinders-rapidly-iterating-product-development">Looker hinders rapidly iterating product development</h2>
-
-<p>Looker is not a great place for dashboards of experimental work or rapidly evolving datasets and isn&rsquo;t great for getting insight into new features that were built and deployed within the past few days or weeks.</p>
-
-<p>Looker is best for building dashboards on top of your more mature corners of the business. The idea is that your data analyst does an initial up front concerted effort to diligently sort, organize and label your data schema. For them to do this, it implies your data schema should be relatively stable. This might suit some of the more traditional, stable parts of your company like tracking User Sign Ups, or Orders.</p>
-
-<p>My current team&rsquo;s culture is to iterate fast, to try something, measure the results, adopt it and move on if necessary. Ideally we&rsquo;d like to add a new production table, start amassing data in it, and then quickly build dashboards (that might not last longer than a week or two) to measure the result or inspect the contents. Every time we start collecting a new piece of data and want to report it in Looker for our business partners to play with, we have to do grunt work to get it to appear in Snowflake, and once in Snowflake we have to do grunt work to get it readily available in Looker. Admittedly this could be mitigated if we were flush with Data Analysts embedded in our team who could immediately start defining the LookML schema the moment each migration lands but the reality is that they are a shared resource and you have to get in line and wait your turn if you need something to appear in Looker.</p>
-
-<h2 id="in-summary">In Summary</h2>
-
-<p>Looker has value for sure, but it doesn&rsquo;t mean you can hire fewer analysts or engineers, if anything you should hire more, and if you&rsquo;re a fast moving business with an ever-evolving product, your team&rsquo;s ability to make data driven decisions is still constrained by the capacity of your Data Analytics team and if you consider yourselves rapid iterators making data driven decisions you may find traditional SQL-based analytics tools are better suited for the job.</p>
-
   </div>
   
   <div class="post">
     <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2017/06/python-requests/">
-        Protect your Python app from Timeouts
-      </a>
-    </h1>
-
-    <span class="post-date">Sun, Jun 11, 2017</span>
-
-    <p>In this post, I show how to better protect your python service when making http calls to other services by guaranteeing a timeout by monkey-patching the <em>requests</em> library.</p>
-
-<p>Services tend to talk to other services. These services might be owned by you, another team at work, or made available by a third party (e.g. Google Maps API).</p>
-
-<p>How tolerant is your service to the failure of one of these upstream services? Have you tested what will happen when one of these services isn&rsquo;t responding to your requests they way you expected?</p>
-
-<p>I found this out the hard way recently when I deployed a new feature to my python service that required talking to another service. This upstream service was taking a long time to respond to my high volume of requests.</p>
-
-<p>I use the <a href="https://github.com/requests/requests">requests</a> library to call the APIs of other services. This library, has no default timeout value for requests that are taking too long. The consequence is that all of my service&rsquo;s resources were quickly exhausted and waiting for responses from this upstream service that were never going to arrive.</p>
-
-<p>The result? My service pretty much ground to a halt.</p>
-
-<p>Other similar libraries written for other languages do have a default timeout setting in place. For instance, my ruby services use <a href="https://github.com/excon/excon">excon</a> which has a default timeout of 60 seconds. This is probably still too high for most cases but its very straightforward to set your own default</p>
-
-<pre><code># config/initializers/excon.rb
-Excon.defaults[:read_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
-Excon.defaults[:write_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
-Excon.defaults[:connect_timeout] = ENV.fetch('EXCON_DEFAULT_TIMEOUT_SECONDS', 10).to_i
-
-</code></pre>
-
-<p>As for the <em>requests</em> library&hellip;</p>
-
-<blockquote>
-<p>Most requests to external servers should have a timeout attached, in case the server is not responding in a timely manner. By default, requests do not time out unless a timeout value is set explicitly. Without a timeout, your code may hang for minutes or more. <a href="http://docs.python-requests.org/en/master/user/advanced/#timeouts">link</a></p>
-</blockquote>
-
-<p>Eeek!</p>
-
-<p>This means if you or another contributor forgets to add a <code>timeout</code> paramter to your requests library call you run this risk of a request never timing out (and hogging resources in doing so)!</p>
-
-<p>Ensuring a default timeout whenever the <em>requests</em> library is used can be only be achieved (as of requests v.2.17.3 at least) using monkey patching.</p>
-
-<p>I try to only use monkey patching as a last resort as it is brittle and harder than normal to debug but since there is no global constant or environment variable that can be overwritten we&rsquo;ll have to make do with monkey patching!</p>
-
-<pre><code>import requests
-from requests.adapters import TimeoutSauce
-import configuration
-
-
-class GlobalDefaultTimeoutSauce(TimeoutSauce):
-    # A subclass of TimeoutSauce that will use a
-    # default timeout setting when overrides are not already specified
-
-    def __init__(self, *args, **kwargs):
-        default_timeout_seconds = configuration.REQUESTS_DEFAULT_TIMEOUT_S
-        connect = kwargs.get('connect') or default_timeout_seconds
-        read = kwargs.get('read') or default_timeout_seconds
-        super(GlobalDefaultTimeoutSauce, self).__init__(connect=connect, read=read)
-
-
-def monkey_patch_requests_timeout_strategy():
-    # Subsequent usages of the requests library will use a default
-    # timeout if none is specified by the caller.
-    # Call me once during your app's init phase, before any requests are made.
-    requests.adapters.TimeoutSauce = GlobalDefaultTimeoutSauce
-</code></pre>
-
-<p>To see how this is used take a look at the adapters module in the requests project. <a href="https://github.com/requests/requests/blob/master/requests/adapters.py#L416">link</a></p>
-
-<p>Now I can boost the resiliency of my service from degredations of the services I depend on! Hope this helps someone else out!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/book/hillbilly/">
-        Hillbilly Eligy
+      <a href="https://oliverwilkie.com/reviews/">
+        Reviews
       </a>
     </h1>
 
     <span class="post-date">Sun, Jan 8, 2017</span>
 
-    <figure>
-    <img src="https://images.gr-assets.com/books/1463569814l/27161156.jpg"/> 
-</figure>
-
-
-<p>The <a href="https://www.amazon.com/Hillbilly-Elegy-Memoir-Family-Culture/dp/0062300547">Hillbilly Eligy</a> by J. D. Vance is a memoir of a boy growing up in Ohio in a [sic] white working class family that had its fair share of hardship and troubles with addiction. Its written very straightforwardly and conjures a vivid picture of the author&rsquo;s upbringing. I read this book because it was being billed online as a good insight into a part of America that had been out of sight and out of mind. I don&rsquo;t think this wholly explains why the &lsquo;16 election swung the way it did but nevertheless a worthwhile read.</p>
-
-<p>Tidbits I took away from this book were:</p>
-
-<ul>
-<li>Be wary of the perils of living in an area that has one large main employer.</li>
-<li>If an area suddenly has no jobs, the bottom of the housing market can fall out and only the relatively rich can afford to bite the cost and move away.</li>
-<li>The author notes that the most stable/happy members of his family were those that married other halves from happier/stabler backgrounds.</li>
-<li>Adverse childhood experiences can rear their ugly head in adulthood.</li>
-<li>Addiction is the worst.</li>
-<li>Its very hard to resist a community&rsquo;s weariness and resignation about class immobility.</li>
-</ul>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/12/ornaments/">
-        Ornaments
-      </a>
-    </h1>
-
-    <span class="post-date">Thu, Dec 22, 2016</span>
-
     
-
-<p>The morning of my flight home for the holidays I hastily came up with something for my family&rsquo;s arts&rsquo;n&rsquo;crafts gift exchange.</p>
-
-<p>Luckily the Techshop was pretty quiet so I could get some time on the Laser Cutter to draw up these fellas</p>
-
-<figure>
-    <img src="/ornaments.jpg"/> 
-</figure>
-
-
-<p>It took three iterations to get it right, the first was too big, the second was good but needed handles. Once you&rsquo;ve got it though, its just a question of copy and paste to make lots!</p>
-
-<figure>
-    <img src="/ornament-board.jpg"/> 
-</figure>
-
-
-<figure>
-    <img src="/ornament.jpg"/> 
-</figure>
-
-
-<h3 id="lessons-learned">Lessons learned</h3>
-
-<ul>
-<li>The Laser Cutter slices through the MDF sheet like its butter</li>
-</ul>
-
-<h3 id="equipment-and-materials-used">Equipment and Materials used</h3>
-
-<ul>
-<li>1/4inch Walnut coated MDF Sheet (~$15)</li>
-<li>1x <a href="https://www.ulsinc.com/">Universal Laser Cutter</a> @ <a href="http://techshop.ws/tssf.html">Techshop SF</a></li>
-<li>1x Adobe Illustrator</li>
-</ul>
-
-<h3 id="references">References</h3>
-
-<ul>
-<li><a href="http://veerle.duoh.com/design/article/create_a_snowflake_in_illustrator">How to create a snowflake using Illustrator</a></li>
-</ul>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/12/danish-christmas-tree/">
-        Danish Christmas Tree
-      </a>
-    </h1>
-
-    <span class="post-date">Thu, Dec 22, 2016</span>
-
-    
-
-<figure>
-    <img src="/tree.jpg"/> 
-</figure>
-
-
-<p>Late November I made this Wooden Dowel Christmas Tree with advent-style felt ornaments (with some talented friends helping with all the ornaments).</p>
-
-<p>The tree is collapsible (you just pull the branches out) which is useful for the rest of the year when its not Christmas!</p>
-
-<figure>
-    <img src="/decorations.jpg"/> 
-</figure>
-
-
-<figure>
-    <img src="/base_of_tree.jpg"/> 
-</figure>
-
-
-<h3 id="lessons-learned">Lessons learned</h3>
-
-<ul>
-<li>Dowel is cheap</li>
-<li>25 hand-stiched ornaments can take a while</li>
-<li>Once you&rsquo;re half way through you have to finish!</li>
-</ul>
-
-<h3 id="resources-and-references">Resources and References</h3>
-
-<ul>
-<li><a href="http://www.nalleshouse.com/2013/12/diy-danish-wooden-dowel-tree.html">Nalle&rsquo;s House Blog</a></li>
-<li><a href="http://www.filigrantrae.dk/">Filigrantre</a></li>
-</ul>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/12/evensteven-released/">
-        Even Steven - available for download
-      </a>
-    </h1>
-
-    <span class="post-date">Sun, Dec 4, 2016</span>
-
-    <p>Even Steven is now available as a free download on the <a href="https://itunes.apple.com/us/app/even-steven-group-expenses/id1163572319?mt=8">App Store</a></p>
-
-<p><a href="https://itunes.apple.com/us/app/even-steven-group-expenses/id1163572319?mt=8" style="display:inline-block;overflow:hidden;background:url(//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a></p>
-
-<p>Feedback welcomed via <a href="https://www.twitter.com/oliwilks">Twitter</a></p>
-
-<p>Thanks to people that helped test it!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/10/evensteven/">
-        Even Steven - a group expenses app for iOS
-      </a>
-    </h1>
-
-    <span class="post-date">Sun, Oct 9, 2016</span>
-
-    <figure>
-    <img src="/evensteven-preview1.png"/> 
-</figure>
-
-
-<p><strong>Update</strong> Now available on the App Store!</p>
-
-<p><a href="https://itunes.apple.com/us/app/even-steven-group-expenses/id1163572319?mt=8" style="display:inline-block;overflow:hidden;background:url(//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a></p>
-
-<p>Even Steven is a handy app that records group spending for events such as holidays and suggests who needs to pay what to whom in order to get even!</p>
-
-<p>Even Steven is designed for iPhone and:</p>
-
-<ul>
-<li>requires no signing up</li>
-<li>does not require an internet connection (ideal when holidaying abroad and not having data)</li>
-</ul>
-
-<p>Behind the scenes, Even Steven is a pure Swift3 iOS app and uses no third party libraries.</p>
-
-<p><figure>
-    <img src="/evensteven-preview2.png"/> 
-</figure>
-
-<figure>
-    <img src="/evensteven-preview3.png"/> 
-</figure>
-</p>
-
-<p>Even Steven 1.0 is still undergoing beta testing amongst friends but will hopefully be available for free to all before Christmas!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/08/tealight/">
-        Walnut Tealight Holder
-      </a>
-    </h1>
-
-    <span class="post-date">Sun, Aug 14, 2016</span>
-
-    
-
-<figure>
-    <img src="/tealight.jpg"/> <figcaption>
-            <h4>Walnut Tealight Holder</h4>
-        </figcaption>
-</figure>
-
-
-<p>Still horrendous at making things with my hands but will keep trying! This is a tealight holder that is basically three bits of wood, two drill holes and glue.</p>
-
-<ul>
-<li>Band Saw</li>
-<li>Pillar Drilling Machine</li>
-<li>1 <sup>1</sup>&frasl;<sub>2</sub>&rdquo; Forstner Bit</li>
-<li>Sand Paper</li>
-<li>Wood Glue</li>
-<li>Circular Saw</li>
-</ul>
-
-<h3 id="lessons-learnt">Lessons learnt</h3>
-
-<h4 id="buying-wood">Buying Wood</h4>
-
-<ul>
-<li>Walnut is a beautiful dark hardwood</li>
-<li>Walnut is expensive</li>
-<li>A DIY Store will sell wood at fixed lengths, but will cut it into pieces for you.</li>
-<li>My car can fit about 10feet of wood just!</li>
-</ul>
-
-<h4 id="prepping">Prepping</h4>
-
-<ul>
-<li>Make a detailed plan beforehand.</li>
-<li>If it doesn&rsquo;t work on paper it won&rsquo;t work in the shop (this applies to coding too btw). Draw out everything to scale.</li>
-<li>Use SketchUp or some other CAD software if you want to have reusable plans.</li>
-<li>Itemize the equipment you&rsquo;ll need. Nothing more frustrating than being halfway through and realising you don&rsquo;t have any sanding paper!</li>
-<li>Use Painters Tape or Super77 glue to stick your paper plans onto real wood.</li>
-</ul>
-
-<h4 id="in-the-shop">In the Shop</h4>
-
-<ul>
-<li>Sanding concave curves is hard without a spindle sander</li>
-<li>Always sand with the grain</li>
-<li>Wood Glue needs clamps and needs to sit clamped for at least 30mins</li>
-<li>Have a Pencil and a backup!</li>
-</ul>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/07/tensorflow_101/">
-        Tensorflow 101
-      </a>
-    </h1>
-
-    <span class="post-date">Tue, Jul 5, 2016</span>
-
-    <p>Tensorflow seems like a pretty exciting alternative to <code>scikit-learn</code> that works just as effectively for beginners as it does for pros.</p>
-
-<p>For my <a href="https://squareup.com/careers">team</a>&rsquo;s monthly drink&rsquo;n&rsquo;sync I wrote an interactive worksheet on using TensorFlow to build a handwritten number detector.</p>
-
-<p>Check it out on <a href="https://github.com/oliw/tensorflow_tutorial">github</a>!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/05/pong/">
-        Pong in &lt; 250 lines of JS!
-      </a>
-    </h1>
-
-    <span class="post-date">Fri, May 27, 2016</span>
-
-    
-
-<p>This is a crude example of a playable game that can be expressed in less than 250 lines of code!</p>
-
-<h2 id="demo">Demo</h2>
-
-<script
-    data-slug-hash="pbovov"
-    data-user="jorin"
-    data-height="500"
-    data-default-tab="result"
-    data-theme-id="8862"
-    class='codepen'
-    async
-    src="//codepen.io/assets/embed/ei.js"
-></script>
-
-<h2 id="code">Code</h2>
-
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  1</span><span style="color:#0f0;font-weight:bold">&lt;!DOCTYPE html&gt;</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  2</span>&lt;<span style="font-weight:bold">html</span>&gt;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  3</span>&lt;<span style="font-weight:bold">body</span>&gt;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  4</span>  &lt;<span style="font-weight:bold">canvas</span> <span style="color:#007f7f">id</span>=<span style="color:#0ff;font-weight:bold">&#34;game&#34;</span>&gt; &lt;/<span style="font-weight:bold">canvas</span>&gt;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  5</span>  &lt;<span style="font-weight:bold">script</span> <span style="color:#007f7f">type</span>=<span style="color:#0ff;font-weight:bold">&#34;text/javascript&#34;</span>&gt;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  6</span>    <span style="color:#fff;font-weight:bold">var</span> game = (<span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  7</span>      <span style="color:#fff;font-weight:bold">var</span> Width = <span style="color:#ff0;font-weight:bold">800</span>, Height = <span style="color:#ff0;font-weight:bold">450</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  8</span>      <span style="color:#fff;font-weight:bold">var</span> canvas = <span style="color:#fff;font-weight:bold">document</span>.getElementById(<span style="color:#0ff;font-weight:bold">&#34;game&#34;</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  9</span>      <span style="color:#fff;font-weight:bold">var</span> FPS = <span style="color:#ff0;font-weight:bold">1000</span> / <span style="color:#ff0;font-weight:bold">60</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 10</span>      canvas.width = Width;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 11</span>      canvas.height = Height;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 12</span>      canvas.setAttribute(<span style="color:#0ff;font-weight:bold">&#39;tabindex&#39;</span>, <span style="color:#ff0;font-weight:bold">1</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 13</span>      <span style="color:#fff;font-weight:bold">var</span> ctx = canvas.getContext(<span style="color:#0ff;font-weight:bold">&#34;2d&#34;</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 14</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 15</span>      <span style="color:#fff;font-weight:bold">var</span> BG = {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 16</span>        Color: <span style="color:#0ff;font-weight:bold">&#39;#333&#39;</span>,
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 17</span>        Paint: <span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 18</span>          ctx.fillStyle = <span style="color:#fff;font-weight:bold">this</span>.Color;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 19</span>          ctx.fillRect(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, Width, Height);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 20</span>        }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 21</span>      };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 22</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 23</span>      <span style="color:#fff;font-weight:bold">var</span> Ball = { Radius: <span style="color:#ff0;font-weight:bold">5</span>, Color: <span style="color:#0ff;font-weight:bold">&#39;#999&#39;</span>, X: <span style="color:#ff0;font-weight:bold">0</span>, Y: <span style="color:#ff0;font-weight:bold">0</span>, VelX: <span style="color:#ff0;font-weight:bold">0</span>, VelY: <span style="color:#ff0;font-weight:bold">0</span> };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 24</span>      Ball.Paint = <span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 25</span>        ctx.beginPath();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 26</span>        ctx.fillStyle = <span style="color:#fff;font-weight:bold">this</span>.Color;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 27</span>        ctx.arc(<span style="color:#fff;font-weight:bold">this</span>.X, <span style="color:#fff;font-weight:bold">this</span>.Y, <span style="color:#fff;font-weight:bold">this</span>.Radius, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#fff;font-weight:bold">Math</span>.PI * <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#fff;font-weight:bold">false</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 28</span>        ctx.fill();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 29</span>        <span style="color:#fff;font-weight:bold">this</span>.Update();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 30</span>      };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 31</span>      Ball.Update = <span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 32</span>        <span style="color:#fff;font-weight:bold">this</span>.X += <span style="color:#fff;font-weight:bold">this</span>.VelX;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 33</span>        <span style="color:#fff;font-weight:bold">this</span>.Y += <span style="color:#fff;font-weight:bold">this</span>.VelY;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 34</span>      };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 35</span>      Ball.Reset = <span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 36</span>        <span style="color:#fff;font-weight:bold">this</span>.X = Width / <span style="color:#ff0;font-weight:bold">2</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 37</span>        <span style="color:#fff;font-weight:bold">this</span>.Y = Height / <span style="color:#ff0;font-weight:bold">2</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 38</span>        <span style="color:#fff;font-weight:bold">this</span>.VelX = (!!<span style="color:#fff;font-weight:bold">Math</span>.round(<span style="color:#fff;font-weight:bold">Math</span>.random() * <span style="color:#ff0;font-weight:bold">1</span>) ? <span style="color:#ff0;font-weight:bold">1.5</span> : -<span style="color:#ff0;font-weight:bold">1.5</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 39</span>        <span style="color:#fff;font-weight:bold">this</span>.VelY = (!!<span style="color:#fff;font-weight:bold">Math</span>.round(<span style="color:#fff;font-weight:bold">Math</span>.random() * <span style="color:#ff0;font-weight:bold">1</span>) ? <span style="color:#ff0;font-weight:bold">1.5</span> : -<span style="color:#ff0;font-weight:bold">1.5</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 40</span>      };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 41</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 42</span>      <span style="color:#fff;font-weight:bold">function</span> Paddle(position) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 43</span>        <span style="color:#fff;font-weight:bold">this</span>.Color = <span style="color:#0ff;font-weight:bold">&#39;#999&#39;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 44</span>        <span style="color:#fff;font-weight:bold">this</span>.Width = <span style="color:#ff0;font-weight:bold">5</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 45</span>        <span style="color:#fff;font-weight:bold">this</span>.Height = <span style="color:#ff0;font-weight:bold">100</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 46</span>        <span style="color:#fff;font-weight:bold">this</span>.X = <span style="color:#ff0;font-weight:bold">0</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 47</span>        <span style="color:#fff;font-weight:bold">this</span>.Y = Height / <span style="color:#ff0;font-weight:bold">2</span> - <span style="color:#fff;font-weight:bold">this</span>.Height / <span style="color:#ff0;font-weight:bold">2</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 48</span>        <span style="color:#fff;font-weight:bold">this</span>.Score = <span style="color:#ff0;font-weight:bold">0</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 49</span>        <span style="color:#fff;font-weight:bold">if</span> (position == <span style="color:#0ff;font-weight:bold">&#39;left&#39;</span>)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 50</span>          <span style="color:#fff;font-weight:bold">this</span>.X = <span style="color:#ff0;font-weight:bold">0</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 51</span>        <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">this</span>.X = Width - <span style="color:#fff;font-weight:bold">this</span>.Width;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 52</span>        <span style="color:#fff;font-weight:bold">this</span>.Paint = <span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 53</span>          ctx.fillStyle = <span style="color:#fff;font-weight:bold">this</span>.Color;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 54</span>          ctx.fillRect(<span style="color:#fff;font-weight:bold">this</span>.X, <span style="color:#fff;font-weight:bold">this</span>.Y, <span style="color:#fff;font-weight:bold">this</span>.Width, <span style="color:#fff;font-weight:bold">this</span>.Height);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 55</span>          ctx.fillStyle = <span style="color:#fff;font-weight:bold">this</span>.Color;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 56</span>          ctx.font = <span style="color:#0ff;font-weight:bold">&#34;normal 10pt Calibri&#34;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 57</span>          <span style="color:#fff;font-weight:bold">if</span> (position == <span style="color:#0ff;font-weight:bold">&#39;left&#39;</span>) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 58</span>            ctx.textAlign = <span style="color:#0ff;font-weight:bold">&#34;left&#34;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 59</span>            ctx.fillText(<span style="color:#0ff;font-weight:bold">&#34;score: &#34;</span> + Player.Score, <span style="color:#ff0;font-weight:bold">10</span>, <span style="color:#ff0;font-weight:bold">10</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 60</span>          } <span style="color:#fff;font-weight:bold">else</span> {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 61</span>            ctx.textAlign = <span style="color:#0ff;font-weight:bold">&#34;right&#34;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 62</span>            ctx.fillText(<span style="color:#0ff;font-weight:bold">&#34;score: &#34;</span> + Computer.Score, Width - <span style="color:#ff0;font-weight:bold">10</span>, <span style="color:#ff0;font-weight:bold">10</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 63</span>          }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 64</span>        };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 65</span>        <span style="color:#fff;font-weight:bold">this</span>.IsCollision = <span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 66</span>          <span style="color:#fff;font-weight:bold">if</span> (Ball.X - Ball.Radius &gt; <span style="color:#fff;font-weight:bold">this</span>.Width + <span style="color:#fff;font-weight:bold">this</span>.X || <span style="color:#fff;font-weight:bold">this</span>.X &gt; Ball.Radius * <span style="color:#ff0;font-weight:bold">2</span> + Ball.X - Ball.Radius)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 67</span>            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 68</span>          <span style="color:#fff;font-weight:bold">if</span> (Ball.Y - Ball.Radius &gt; <span style="color:#fff;font-weight:bold">this</span>.Height + <span style="color:#fff;font-weight:bold">this</span>.Y || <span style="color:#fff;font-weight:bold">this</span>.Y &gt; Ball.Radius * <span style="color:#ff0;font-weight:bold">2</span> + Ball.Y - Ball.Radius)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 69</span>            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 70</span>          <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 71</span>        };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 72</span>      };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 73</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 74</span>      <span style="color:#fff;font-weight:bold">window</span>.requestAnimFrame = (<span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 75</span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">window</span>.requestAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.webkitRequestAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.mozRequestAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.oRequestAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.msRequestAnimationFrame || <span style="color:#fff;font-weight:bold">function</span>(callback) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 76</span>          <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">window</span>.setTimeout(callback, FPS);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 77</span>        };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 78</span>      })();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 79</span>      <span style="color:#fff;font-weight:bold">window</span>.cancelRequestAnimFrame = (<span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 80</span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">window</span>.cancelAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.webkitCancelRequestAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.mozCancelRequestAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.oCancelRequestAnimationFrame || <span style="color:#fff;font-weight:bold">window</span>.msCancelRequestAnimationFrame || clearTimeout
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 81</span>      })();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 82</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 83</span>      <span style="color:#fff;font-weight:bold">var</span> Computer = <span style="color:#fff;font-weight:bold">new</span> Paddle();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 84</span>      <span style="color:#fff;font-weight:bold">var</span> Player = <span style="color:#fff;font-weight:bold">new</span> Paddle(<span style="color:#0ff;font-weight:bold">&#39;left&#39;</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 85</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 86</span>      <span style="color:#fff;font-weight:bold">function</span> Paint() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 87</span>        ctx.beginPath();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 88</span>        BG.Paint();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 89</span>        Computer.Paint();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 90</span>        Player.Paint();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 91</span>        Ball.Paint();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 92</span>      }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 93</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 94</span>      <span style="color:#fff;font-weight:bold">function</span> MouseMove(e) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 95</span>        Player.Y = e.pageY - Player.Height / <span style="color:#ff0;font-weight:bold">2</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 96</span>      }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 97</span>      canvas.addEventListener(<span style="color:#0ff;font-weight:bold">&#34;mousemove&#34;</span>, MouseMove, <span style="color:#fff;font-weight:bold">true</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 98</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 99</span>      <span style="color:#fff;font-weight:bold">function</span> Loop() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">100</span>        init = requestAnimFrame(Loop);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">101</span>        Paint();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">102</span>        <span style="color:#fff;font-weight:bold">if</span> (Player.IsCollision() || Computer.IsCollision()) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">103</span>          Ball.VelX = Ball.VelX * -<span style="color:#ff0;font-weight:bold">1</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">104</span>          Ball.VelX += (Ball.VelX &gt; <span style="color:#ff0;font-weight:bold">0</span> ? <span style="color:#ff0;font-weight:bold">0.5</span> : -<span style="color:#ff0;font-weight:bold">0.5</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">105</span>          <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">Math</span>.abs(Ball.VelX) &gt; Ball.Radius * <span style="color:#ff0;font-weight:bold">1.5</span>)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">106</span>            Ball.VelX = (Ball.VelX &gt; <span style="color:#ff0;font-weight:bold">0</span> ? Ball.Radius * <span style="color:#ff0;font-weight:bold">1.5</span> : Ball.Radius * -<span style="color:#ff0;font-weight:bold">1.5</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">107</span>        }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">108</span>        <span style="color:#fff;font-weight:bold">if</span> (Ball.Y - Ball.Radius &lt; <span style="color:#ff0;font-weight:bold">0</span> || Ball.Y + Ball.Radius &gt; Height)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">109</span>          Ball.VelY = Ball.VelY * -<span style="color:#ff0;font-weight:bold">1</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">110</span>        <span style="color:#fff;font-weight:bold">if</span> (Ball.X - Ball.Radius &lt;= <span style="color:#ff0;font-weight:bold">0</span>) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">111</span>          Computer.Score++;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">112</span>          Ball.Reset();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">113</span>        } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (Ball.X + Ball.Radius &gt; Width) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">114</span>          Player.Score++;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">115</span>          Ball.Reset();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">116</span>        }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">117</span>        <span style="color:#fff;font-weight:bold">if</span> (Computer.Score === <span style="color:#ff0;font-weight:bold">10</span>)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">118</span>          GameOver(<span style="color:#fff;font-weight:bold">false</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">119</span>        <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (Player.Score === <span style="color:#ff0;font-weight:bold">10</span>)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">120</span>          GameOver(<span style="color:#fff;font-weight:bold">true</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">121</span>        Computer.Y = (Computer.Y + Computer.Height / <span style="color:#ff0;font-weight:bold">2</span> &lt; Ball.Y ? Computer.Y + Computer.Vel : Computer.Y - Computer.Vel);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">122</span>      };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">123</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">124</span>      <span style="color:#fff;font-weight:bold">function</span> GameOver(win) {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">125</span>        cancelRequestAnimFrame(init);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">126</span>        BG.Paint();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">127</span>        ctx.fillStyle = <span style="color:#0ff;font-weight:bold">&#34;#999&#34;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">128</span>        ctx.font = <span style="color:#0ff;font-weight:bold">&#34;bold 40px Calibri&#34;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">129</span>        ctx.textAlign = <span style="color:#0ff;font-weight:bold">&#34;center&#34;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">130</span>        ctx.fillText((win ? <span style="color:#0ff;font-weight:bold">&#34;YOU WON!&#34;</span> : <span style="color:#0ff;font-weight:bold">&#34;GAME OVER&#34;</span>), Width / <span style="color:#ff0;font-weight:bold">2</span>, Height / <span style="color:#ff0;font-weight:bold">2</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">131</span>        ctx.font = <span style="color:#0ff;font-weight:bold">&#34;normal 16px Calibri&#34;</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">132</span>        ctx.fillText(<span style="color:#0ff;font-weight:bold">&#34;refresh to replay&#34;</span>, Width / <span style="color:#ff0;font-weight:bold">2</span>, Height / <span style="color:#ff0;font-weight:bold">2</span> + <span style="color:#ff0;font-weight:bold">20</span>);
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">133</span>      }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">134</span>      <span style="color:#fff;font-weight:bold">return</span> {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">135</span>        Start: <span style="color:#fff;font-weight:bold">function</span>() {
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">136</span>          Ball.Reset();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">137</span>          Player.Score = <span style="color:#ff0;font-weight:bold">0</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">138</span>          Computer.Score = <span style="color:#ff0;font-weight:bold">0</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">139</span>          Computer.Vel = <span style="color:#ff0;font-weight:bold">1.25</span>;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">140</span>          Loop();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">141</span>        }
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">142</span>      };
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">143</span>    })();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">144</span>    game.Start();
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">145</span>  &lt;/<span style="font-weight:bold">script</span>&gt;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">146</span>&lt;/<span style="font-weight:bold">body</span>&gt;
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">147</span>&lt;/<span style="font-weight:bold">html</span>&gt;</code></pre></div>
-
   </div>
   
   <div class="post">
@@ -619,34 +90,10 @@ def monkey_patch_requests_timeout_strategy():
 
     <span class="post-date">Thu, May 26, 2016</span>
 
-    <p>Oliver Wilkie is a software engineer in San Francisco.</p>
-
-<p>Oli spends a lot of time writing ruby code at Flexport to automate and scale tasks such as boat tracking, boat timetables and cost prediction. Before that Oli spent several years down the road at Square working on logistics problems of a different kind. Oli’s primary focus wherever he goes is getting stuff done by writing software efficiently and applying it wisely to areas that haven’t fully benefited from it so far. A believer in technology, but also digital minimalism, Oli is passionate about finding that balance between the two.</p>
-
-<p>Oil owes his start to loving parents, supportive teachers, a <a href="https://www.youtube.com/watch?v=ji5_MqicxSo">Randy Pausch lecture</a> and the earnestness of youth which carried him to London to study Computing at Imperial College, then France to intern (and frankly have the summer of a lifetime) and finally a pilgrimage to San Francisco which he has happily called home for the past six years.</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="https://oliverwilkie.com/2016/03/reroku/">
-        Reroku (Heroku on a Raspberry Pi)
-      </a>
-    </h1>
-
-    <span class="post-date">Tue, Mar 1, 2016</span>
-
-    <p>My team recently switched our applications from Heroku to barebones AWS. The experience made me truely appreciate just how effective Heroku is and how it has made deploying apps as painfree as could be. After all, what good is making an app if nobody can see it!</p>
-
-<p>I&rsquo;ve also been a huge fan of my Raspberry Pi. Every time I look at it, I feel challenged to think of a cool use for it.</p>
-
-<p>So with that in mind, I decided to take a shot of making a proof-of-concept of a Heroku-like service that can run on a raspberry pi. It was a great exercise in Unix scripting and gluing a few things together. Plus I got to learn more about the innards of <code>git</code> and what happens when you do a <code>git push</code>!</p>
-
-<p>Kudos to the Dokku project which heavily inspired me.</p>
-
-<p>Its a proof-of-concept but I&rsquo;m reluctant to invest time making a stable version since I think something like docker+kubernetes might be just around the corner for the Pi and I&rsquo;d rather invest time figuring out how to make an accessible interface for that!</p>
-
-<p>Check it out on <a href="https://github.com/oliw/reroku-poc">github</a>!</p>
+    <p>Hi, I&rsquo;m <a href="https://twitter.com/oliwilks">Oli</a> and I <a href="https://www.linkedin.com/in/owilkie/">work as a software engineer</a> in San Francisco.</p>
+<p>I spend a lot of time writing ruby code for <a href="http://flexport.com/">Flexport</a> to automate and scale tasks such as boat tracking, boat timetables and cost prediction. Before that I spent several years down the road at <a href="https://squareup.com/">Square</a> working on logistics problems. My primary focus wherever I go is getting stuff done by writing software efficiently and applying it wisely to areas that haven’t fully benefited from it so far.</p>
+<p>I&rsquo;m a believer in technology, but also <a href="https://www.goodreads.com/book/show/40672036-digital-minimalism">digital minimalism</a>, and am passionate about finding that <a href="https://www.humanetech.com/">balance between the two</a>.</p>
+<p>I owe my footing in this world to loving parents, supportive teachers, a <a href="https://www.youtube.com/watch?v=ji5_MqicxSo">Randy Pausch lecture</a> and the earnestness of youth which took me to London to study <a href="https://www.imperial.ac.uk/computing">Computing</a> at Imperial College, then <a href="https://en.wikipedia.org/wiki/Antibes">France</a> to intern (and frankly have the summer of a lifetime) and then a pilgrimage to San Francisco which he has happily called home for the past six years.</p>
 
   </div>
   

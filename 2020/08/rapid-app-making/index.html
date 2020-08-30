@@ -1,0 +1,113 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Lessons in App Development: Start Small &middot; Oliver Wilkie</title>
+  
+
+  
+  <link rel="stylesheet" href="https://oliverwilkie.com/css/poole.css">
+  <link rel="stylesheet" href="https://oliverwilkie.com/css/syntax.css">
+  <link rel="stylesheet" href="https://oliverwilkie.com/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Oliver Wilkie" />
+</head>
+
+	<body class="theme-base-0b ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://oliverwilkie.com/"><h1>Oliver Wilkie</h1></a>
+      <p class="lead">
+       Software Engineer 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      
+        <li><a href="/posts"> Posts </a></li>
+      
+        <li><a href="/reviews"> Reviews </a></li>
+      
+        <li><a href="/about/"> About </a></li>
+      
+    </ul>
+
+    <p>&copy; 2020. All rights reserved. </p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Lessons in App Development: Start Small</h1>
+			  <span class="post-date">Sat, Aug 29, 2020</span>
+			      <p>Four years since <a href="https://oliverwilkie.com/2016/10/evensteven/" title="">the first one</a>, I&rsquo;m writing my second app.</p>
+<p>This is <strong>Part 1</strong> in (hopefully) a series of blog posts about how I&rsquo;ve learned to efficiently and iteratively build this app in my spare time.</p>
+<p>As a software engineer, my goal is to increasingly master the art of efficiently and quickly building useful software and when working on projects whose future value is yet to be proven, I&rsquo;ve been frequently rewarded for prioritizing quickly delivered B+ solutions over slow but high quality A+ solutions.</p>
+<p>Whats the best recipe for building good apps quickly?</p>
+<h2 id="starting-small">Starting Small</h2>
+<p>During my time at Square we had four engineering values. In truth, two of these values I&rsquo;ve now forgotten, but, the other two have stayed with me are <strong>Show. Don&rsquo;t Tell</strong> and <strong>Start Small</strong>, and I think both are excellent values to work and live by.</p>
+<p>When you decide to build an app; you&rsquo;re in a <a href="https://en.wikipedia.org/wiki/Greenfield_project">greenfield situation</a>, and your head immediately starts to race with possibilities, ideas, open questions, and decisions to make. There are so many traps enginers can fall into that causes them to spin their wheels&hellip;. feeling busy sure, but not really making externally observable progress with each working session.</p>
+<p>You&rsquo;ll find the luxury of getting to choose everything can hinder your ability to actually get the right things done, so and today I want to focus on the art of getting things done by starting small and saying no to temptation!</p>
+<h2 id="bias-towards-what-you-already-know">Bias towards what you already know</h2>
+<p>Whats more important; learning new stuff, or shipping something?
+For me, I want to prioritize anything that means I get to ship something of value.
+I can afford for the insides to be subpar for a <em>very</em> long time.
+Only when the project becomes a mild success by definition (e.g. makes $100 in revenue) will I allow myself to pause on new features and take the time try out replacing old but familiar tech with new tech that might be ultimately better for my app.</p>
+<p>This means I want to use my existing skill set as much as possible.</p>
+<p>I know very well (amongst other things not related to app development)</p>
+<ul>
+<li>React / Web Development</li>
+<li>Plain old SQL</li>
+<li>CSS Layouts</li>
+<li>VS Code</li>
+<li>NPM</li>
+</ul>
+<p>I don&rsquo;t know very well</p>
+<ul>
+<li>Swift</li>
+<li>Kotlin</li>
+<li>XCode</li>
+<li>Cocoapods</li>
+<li>Redux</li>
+<li>User Experience / UI Best Practices</li>
+</ul>
+<p>With that in mind, I went down the React Native route, especially because I knew I wasn&rsquo;t going to need to use any hardware APIs on the phones.</p>
+<h2 id="no-backend">No Backend</h2>
+<p>An app that <a href="https://alistapart.com/article/offline-first/">works fine offline</a> and requires <a href="https://github.com/aviaryan/awesome-no-login-web-apps">no log-in</a> is vastly underated and undervalued in my opinion. You can always move it to be online in the future, but in the meantime, since its just you, enjoy the lightness of not having to spin up, maintain, and build a backend too.</p>
+<p>At work you&rsquo;re probably used to lots of great stuff like; continuously run test suites, continuous deployment, finetuned databases, consistent API design, system health monitoring, and, most importantly, someone else footing the bill for the operating costs.</p>
+<p>Mobile Apps support SQLite databases. They aren&rsquo;t glamourous, but good enough for to get going for sure!</p>
+<h2 id="no-secondary-features">No Secondary Features</h2>
+<p>Know what your critical path is and build that first! Everything else can come later.</p>
+<p>Your critical path is the thing that must be up at working no matter what. Its the thing that if it didn&rsquo;t exist, your project wouldn&rsquo;t make sense any more. At a food delivery company I worked for; the critical path was that a driver should be able to sign up, go online, receive delivery requests, deliver the deliveries, sign off and then get paid. Everything else was a nice-to-have frivalous secondary concern, and we tried our best to make sure couldn&rsquo;t disrupt the critical path.</p>
+<p>As you focus on building your critical path you&rsquo;re going to have a lot of fun, stimulating ideas for extra ablities and features , but try not to get disctracted by them. Write them down in your Notes app, and get back to the task at hand. Don&rsquo;t build anything else until your critical path is done!</p>
+<h2 id="no-custom-ui">No Custom UI</h2>
+<p>Building pretty, consistent UI is not my strength. I don&rsquo;t have artistic talent, and at work I often lean on the skills of designers to build well laid-out spec that I can lean on.</p>
+<p>Theres a LOT of freely available collections of UI components available on the internet.</p>
+<h2 id="summary">Summary</h2>
+<p>When you are just getting started, the possibilities are endless. Make a note of every idea you think of, but leave at that and stay focused!</p>
+<p>Start small.
+Seriously. Small.</p>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>
