@@ -4,7 +4,17 @@
   
   <url>
     <loc>https://oliverwilkie.com/</loc>
-    <lastmod>2020-09-01T17:28:05+01:00</lastmod>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/portfolio/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/portfolio/thatthatthis/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,6 +38,16 @@
   </url>
   
   <url>
+    <loc>https://oliverwilkie.com/portfolio/jrnlbitbar/</loc>
+    <lastmod>2020-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/portfolio/papergamer/</loc>
+    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://oliverwilkie.com/categories/</loc>
     <lastmod>2017-06-11T15:02:32+01:00</lastmod>
   </url>
@@ -43,12 +63,7 @@
   </url>
   
   <url>
-    <loc>https://oliverwilkie.com/reviews/hillbilly/</loc>
-    <lastmod>2017-01-08T16:44:36-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oliverwilkie.com/reviews/</loc>
+    <loc>https://oliverwilkie.com/2017/01/hillbilly/</loc>
     <lastmod>2017-01-08T16:44:36-08:00</lastmod>
   </url>
   
@@ -70,6 +85,11 @@
   <url>
     <loc>https://oliverwilkie.com/2016/10/evensteven/</loc>
     <lastmod>2016-10-09T20:19:43-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/portfolio/evensteven/</loc>
+    <lastmod>2016-10-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -100,6 +120,11 @@
   <url>
     <loc>https://oliverwilkie.com/2016/03/reroku/</loc>
     <lastmod>2016-03-01T08:48:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/portfolio/meng/</loc>
+    <lastmod>2013-06-01T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>

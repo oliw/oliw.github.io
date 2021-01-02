@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Tue, 01 Sep 2020 17:28:05 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://oliverwilkie.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>That That This</title>
+      <link>https://oliverwilkie.com/portfolio/thatthatthis/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://oliverwilkie.com/portfolio/thatthatthis/</guid>
+      <description>A small, cheap and useful iOS App for making decisions using a framework called Analytic Hierachy.</description>
+    </item>
     
     <item>
       <title>Wielding Technology</title>
@@ -40,6 +49,24 @@
     </item>
     
     <item>
+      <title>JRNL Bitbar</title>
+      <link>https://oliverwilkie.com/portfolio/jrnlbitbar/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://oliverwilkie.com/portfolio/jrnlbitbar/</guid>
+      <description>A BitBar plugin for quickly viewing and adding new topics into your Jrnl.sh</description>
+    </item>
+    
+    <item>
+      <title>Paper Gamer</title>
+      <link>https://oliverwilkie.com/portfolio/papergamer/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://oliverwilkie.com/portfolio/papergamer/</guid>
+      <description>A game center for playing Telephone and Salad Bowl remotely with friends during the COVID-19 lockdown.</description>
+    </item>
+    
+    <item>
       <title>Protect your Python app from Timeouts</title>
       <link>https://oliverwilkie.com/2017/06/python-requests/</link>
       <pubDate>Sun, 11 Jun 2017 15:02:32 +0100</pubDate>
@@ -52,10 +79,10 @@ How tolerant is your service to the failure of one of these upstream services?</
     
     <item>
       <title>Hillbilly Eligy</title>
-      <link>https://oliverwilkie.com/reviews/hillbilly/</link>
+      <link>https://oliverwilkie.com/2017/01/hillbilly/</link>
       <pubDate>Sun, 08 Jan 2017 16:44:36 -0800</pubDate>
       
-      <guid>https://oliverwilkie.com/reviews/hillbilly/</guid>
+      <guid>https://oliverwilkie.com/2017/01/hillbilly/</guid>
       <description>The Hillbilly Eligy by J. D. Vance is a memoir of a boy growing up in Ohio in a [sic] white working class family that had its fair share of hardship and troubles with addiction. Its written very straightforwardly and conjures a vivid picture of the author&amp;rsquo;s upbringing. I read this book because it was being billed online as a good insight into a part of America that had been out of sight and out of mind.</description>
     </item>
     
@@ -105,6 +132,15 @@ Even Steven is designed for iPhone and:
     </item>
     
     <item>
+      <title>Even Steven</title>
+      <link>https://oliverwilkie.com/portfolio/evensteven/</link>
+      <pubDate>Sat, 01 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://oliverwilkie.com/portfolio/evensteven/</guid>
+      <description>An iOS App for shared expenses amongst groups. Built in 2016 (but alas no longer available)</description>
+    </item>
+    
+    <item>
       <title>Walnut Tealight Holder</title>
       <link>https://oliverwilkie.com/2016/08/tealight/</link>
       <pubDate>Sun, 14 Aug 2016 17:33:43 -0700</pubDate>
@@ -141,8 +177,11 @@ Demo Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp
       <pubDate>Thu, 26 May 2016 17:28:05 +0100</pubDate>
       
       <guid>https://oliverwilkie.com/about/</guid>
-      <description>Hi, I&amp;rsquo;m Oli and I am a software engineer in San Francisco.
-Right now I write code for Flexport to automate and scale tasks such as boat tracking, boat timetables and cost prediction. Before that I spent several years at Square working on logistics problems. My focus wherever I go is getting stuff done by writing software efficiently and applying it wisely to areas that I believe haven’t fully benefited from it so far.</description>
+      <description>I design and build software for myself and for emerging technology companies, mainly in San Francisco.
+At Flexport I have automated and scaled tasks such as boat tracking, boat timetables and cost prediction.
+At Square I have led the logistics and operations engineering teams responsible for Square&amp;rsquo;s restaurant delivery product.
+At Imperial College London I studied Computing, Machine Learning and Computer Vision.
+I also make small, cheap and useful indie apps like ThatThatThis.</description>
     </item>
     
     <item>
@@ -153,6 +192,15 @@ Right now I write code for Flexport to automate and scale tasks such as boat tra
       <guid>https://oliverwilkie.com/2016/03/reroku/</guid>
       <description>My team recently switched our applications from Heroku to barebones AWS. The experience made me truely appreciate just how effective Heroku is and how it has made deploying apps as painfree as could be. After all, what good is making an app if nobody can see it!
 I&amp;rsquo;ve also been a huge fan of my Raspberry Pi. Every time I look at it, I feel challenged to think of a cool use for it.</description>
+    </item>
+    
+    <item>
+      <title>Masters Thesis</title>
+      <link>https://oliverwilkie.com/portfolio/meng/</link>
+      <pubDate>Sat, 01 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://oliverwilkie.com/portfolio/meng/</guid>
+      <description>Researching motion stabilisation techniques for creating the illusion of a non-beating heart during laproscopic surgery.</description>
     </item>
     
   </channel>
