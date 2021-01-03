@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Sun, 11 Jun 2017 15:02:32 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 01 Jan 2021 20:30:00 -0700</lastBuildDate>
     
 	<atom:link href="https://oliverwilkie.com/categories/coding/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How I Built the ThatThatThis App</title>
+      <link>https://oliverwilkie.com/2021/01/thatthatthis/</link>
+      <pubDate>Fri, 01 Jan 2021 20:30:00 -0700</pubDate>
+      
+      <guid>https://oliverwilkie.com/2021/01/thatthatthis/</guid>
+      <description>An overview of the things I used to make my recently shipped app</description>
+    </item>
+    
+    <item>
+      <title>Start Small</title>
+      <link>https://oliverwilkie.com/2020/08/rapid-app-making/</link>
+      <pubDate>Sat, 29 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://oliverwilkie.com/2020/08/rapid-app-making/</guid>
+      <description>On the value of starting small, and saying no to new things to get things done.</description>
+    </item>
     
     <item>
       <title>Protect your Python app from Timeouts</title>
@@ -21,6 +39,29 @@
       <description>In this post, I show how to better protect your python service when making http calls to other services by guaranteeing a timeout by monkey-patching the requests library.
 Services tend to talk to other services. These services might be owned by you, another team at work, or made available by a third party (e.g. Google Maps API).
 How tolerant is your service to the failure of one of these upstream services?</description>
+    </item>
+    
+    <item>
+      <title>Even Steven - available for download</title>
+      <link>https://oliverwilkie.com/2016/12/evensteven-released/</link>
+      <pubDate>Sun, 04 Dec 2016 12:18:28 -0800</pubDate>
+      
+      <guid>https://oliverwilkie.com/2016/12/evensteven-released/</guid>
+      <description>Even Steven is now available as a free download on the App Store
+Feedback welcomed via Twitter
+Thanks to people that helped test it!</description>
+    </item>
+    
+    <item>
+      <title>Even Steven - a group expenses app for iOS</title>
+      <link>https://oliverwilkie.com/2016/10/evensteven/</link>
+      <pubDate>Sun, 09 Oct 2016 20:19:43 -0400</pubDate>
+      
+      <guid>https://oliverwilkie.com/2016/10/evensteven/</guid>
+      <description>Update Now available on the App Store!
+Even Steven is a handy app that records group spending for events such as holidays and suggests who needs to pay what to whom in order to get even!
+Even Steven is designed for iPhone and:
+ requires no signing up does not require an internet connection (ideal when holidaying abroad and not having data)  Behind the scenes, Even Steven is a pure Swift3 iOS app and uses no third party libraries.</description>
     </item>
     
     <item>

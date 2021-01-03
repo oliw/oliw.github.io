@@ -16,21 +16,19 @@
     
     
 
-<title>Walnut Tealight Holder • Oliver Wilkie</title>
+<title>How I Built the ThatThatThis App • Oliver Wilkie</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Walnut Tealight Holder"/>
-<meta name="twitter:description" content="Walnut Tealight Holder   Still horrendous at making things with my hands but will keep trying! This is a tealight holder that is basically three bits of wood, two drill holes and glue.
- Band Saw Pillar Drilling Machine 1 1/2&rdquo; Forstner Bit Sand Paper Wood Glue Circular Saw  Lessons learnt Buying Wood  Walnut is a beautiful dark hardwood Walnut is expensive A DIY Store will sell wood at fixed lengths, but will cut it into pieces for you."/>
+<meta name="twitter:title" content="How I Built the ThatThatThis App"/>
+<meta name="twitter:description" content="An overview of the things I used to make my recently shipped app"/>
 
-<meta property="og:title" content="Walnut Tealight Holder" />
-<meta property="og:description" content="Walnut Tealight Holder   Still horrendous at making things with my hands but will keep trying! This is a tealight holder that is basically three bits of wood, two drill holes and glue.
- Band Saw Pillar Drilling Machine 1 1/2&rdquo; Forstner Bit Sand Paper Wood Glue Circular Saw  Lessons learnt Buying Wood  Walnut is a beautiful dark hardwood Walnut is expensive A DIY Store will sell wood at fixed lengths, but will cut it into pieces for you." />
+<meta property="og:title" content="How I Built the ThatThatThis App" />
+<meta property="og:description" content="An overview of the things I used to make my recently shipped app" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://oliverwilkie.com/2016/08/tealight/" />
-<meta property="article:published_time" content="2016-08-14T17:33:43-07:00" />
-<meta property="article:modified_time" content="2016-08-14T17:33:43-07:00" />
+<meta property="og:url" content="https://oliverwilkie.com/2021/01/thatthatthis/" />
+<meta property="article:published_time" content="2021-01-01T20:30:00-07:00" />
+<meta property="article:modified_time" content="2021-01-01T20:30:00-07:00" />
 
 
     
@@ -158,13 +156,13 @@
     
 <article>
   <header>
-    <h1>Walnut Tealight Holder</h1>
+    <h1>How I Built the ThatThatThis App</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Aug 14, 2016
+      <i class="fas fa-calendar-alt"></i> Jan 01, 2021
     
     
     
@@ -173,7 +171,7 @@
           in
           
           
-              <a class="badge badge-category" href="/categories/diy">DIY</a>
+              <a class="badge badge-category" href="/categories/coding">CODING</a>
               
           
       
@@ -181,7 +179,7 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 1 min read
+    <i class="fas fa-clock"></i> 2 min read
 </div>
 
 
@@ -189,44 +187,19 @@
   
   
   <div class="post">
-    <figure>
-    <img src="/tealight.jpg"/> <figcaption>
-            <h4>Walnut Tealight Holder</h4>
-        </figcaption>
+    <p><a href="(https://apps.apple.com/us/app/thatthatthis-decision-maker/id1529817354)">ThatThatThis</a> is a small, cheap and useful indie app for methodical decision making. It’s designed to help you wrestle with big questions like “Where shall I live next?”.</p>
+<p>I built the app in 25 sit-down sessions outside of work over a 170 day period. The first commit was on July 14th 2020, and the last commit was on December 31st 2020.</p>
+<p>I used the <a href="http://styletil.es/">Style Tile Framework</a> for coming up with the colour scheme, fonts and general look and feel of the app.</p>
+<p>I used community-provided <a href="https://figma.com">Figma</a> templates for creating appropriately sized assets for the App such as <a href="https://www.figma.com/resources/assets/ios-app-icon-template/">the app icon</a> , the splash screen, and <a href="https://www.figmaresources.com/resources/bBuBczuTwXf7xR4qY">the App Store Screenshots</a>. Fonts were provided by Google Fonts. I used <a href="https://lottiefiles.com/">Lottie</a> for some small animations.</p>
+<p>I used <a href="https://reactnative.dev/">React Native</a> to make this app, and relied heavily on <a href="https://reactnativeelements.com/">React Native Elements</a> to build a minimal viable product, before swapping out most of the pre-provided elements for my custom styled ones.</p>
+<p>Data is saved locally on the device using SQLite3, and Redux is used as state management layer.</p>
+<p>I used <a href="https://expo.io/">the Expo toolset</a> to make this app and wrote the source code in <a href="https://www.typescriptlang.org/">Typescript</a>. <a href="https://prettier.io/">Prettier</a> and <a href="https://eslint.org/">ESLint</a> were used to keep my source code consistently formatted. <a href="https://apps.apple.com/us/app/transporter/id1450874784?mt=12">Transporter</a> was used to deliver my builds to the Apple App Store.</p>
+<p>Special thanks must go to my friend <a href="https://www.linkedin.com/in/tingc10">Ting Chen</a> for our biweekly makers accountability checkins that kept this side project moving forward.</p>
+<p><a href="https://apps.apple.com/us/app/thatthatthis-decision-maker/id1529817354">Try it out</a> and let me know what you think!</p>
+<figure>
+    <img src="screenshot.png"/> 
 </figure>
 
-<p>Still horrendous at making things with my hands but will keep trying! This is a tealight holder that is basically three bits of wood, two drill holes and glue.</p>
-<ul>
-<li>Band Saw</li>
-<li>Pillar Drilling Machine</li>
-<li>1 1/2&rdquo; Forstner Bit</li>
-<li>Sand Paper</li>
-<li>Wood Glue</li>
-<li>Circular Saw</li>
-</ul>
-<h3 id="lessons-learnt">Lessons learnt</h3>
-<h4 id="buying-wood">Buying Wood</h4>
-<ul>
-<li>Walnut is a beautiful dark hardwood</li>
-<li>Walnut is expensive</li>
-<li>A DIY Store will sell wood at fixed lengths, but will cut it into pieces for you.</li>
-<li>My car can fit about 10feet of wood just!</li>
-</ul>
-<h4 id="prepping">Prepping</h4>
-<ul>
-<li>Make a detailed plan beforehand.</li>
-<li>If it doesn&rsquo;t work on paper it won&rsquo;t work in the shop (this applies to coding too btw). Draw out everything to scale.</li>
-<li>Use SketchUp or some other CAD software if you want to have reusable plans.</li>
-<li>Itemize the equipment you&rsquo;ll need. Nothing more frustrating than being halfway through and realising you don&rsquo;t have any sanding paper!</li>
-<li>Use Painters Tape or Super77 glue to stick your paper plans onto real wood.</li>
-</ul>
-<h4 id="in-the-shop">In the Shop</h4>
-<ul>
-<li>Sanding concave curves is hard without a spindle sander</li>
-<li>Always sand with the grain</li>
-<li>Wood Glue needs clamps and needs to sit clamped for at least 30mins</li>
-<li>Have a Pencil and a backup!</li>
-</ul>
 
   </div>
   
@@ -245,16 +218,11 @@
 
 <div class="navigation navigation-single">
     
-    <a href="/2016/07/tensorflow_101/" class="navigation-prev">
+    <a href="/2020/09/wielding-technology/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Tensorflow 101</span>
+      <span class="navigation-tittle">Wielding Technology</span>
     </a>
     
-    
-    <a href="/2016/10/evensteven/" class="navigation-next">
-      <span class="navigation-tittle">Even Steven - a group expenses app for iOS</span>
-      <i aria-hidden="true" class="fa fa-chevron-right"></i>
-    </a>
     
 </div>
 
