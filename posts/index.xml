@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Fri, 01 Jan 2021 20:30:00 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 16 Jan 2021 00:28:56 -0800</lastBuildDate>
     
 	<atom:link href="https://oliverwilkie.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Animating Text</title>
+      <link>https://oliverwilkie.com/2021/01/animatedtext/</link>
+      <pubDate>Sat, 16 Jan 2021 00:28:56 -0800</pubDate>
+      
+      <guid>https://oliverwilkie.com/2021/01/animatedtext/</guid>
+      <description>How to create a typing animation effect in Javascript</description>
+    </item>
     
     <item>
       <title>How I Built the ThatThatThis App</title>
@@ -97,6 +106,7 @@ The tree is collapsible (you just pull the branches out) which is useful for the
       
       <guid>https://oliverwilkie.com/2016/12/evensteven-released/</guid>
       <description>Even Steven is now available as a free download on the App Store
+
 Feedback welcomed via Twitter
 Thanks to people that helped test it!</description>
     </item>
@@ -108,6 +118,7 @@ Thanks to people that helped test it!</description>
       
       <guid>https://oliverwilkie.com/2016/10/evensteven/</guid>
       <description>Update Now available on the App Store!
+
 Even Steven is a handy app that records group spending for events such as holidays and suggests who needs to pay what to whom in order to get even!
 Even Steven is designed for iPhone and:
  requires no signing up does not require an internet connection (ideal when holidaying abroad and not having data)  Behind the scenes, Even Steven is a pure Swift3 iOS app and uses no third party libraries.</description>
@@ -141,7 +152,7 @@ Check it out on github!</description>
       
       <guid>https://oliverwilkie.com/2016/05/pong/</guid>
       <description>This is a crude example of a playable game that can be expressed in less than 250 lines of code!
-Demo Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.setAttribute(&amp;#39;tabindex&amp;#39;, 1); 13 var ctx = canvas.</description>
+Demo  Code 1&amp;lt;!DOCTYPE html&amp;gt; 2&amp;lt;html&amp;gt; 3&amp;lt;body&amp;gt; 4 &amp;lt;canvas id=&amp;#34;game&amp;#34;&amp;gt; &amp;lt;/canvas&amp;gt; 5 &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; 6 var game = (function() { 7 var Width = 800, Height = 450; 8 var canvas = document.getElementById(&amp;#34;game&amp;#34;); 9 var FPS = 1000 / 60; 10 canvas.width = Width; 11 canvas.height = Height; 12 canvas.setAttribute(&amp;#39;tabindex&amp;#39;, 1); 13 var ctx = canvas.</description>
     </item>
     
     <item>
