@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Sat, 16 Jan 2021 00:28:56 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Apr 2021 00:28:56 -0800</lastBuildDate>
     
 	<atom:link href="https://oliverwilkie.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Building a Chat Server in Ruby</title>
+      <link>https://oliverwilkie.com/2021/04/chat_server/</link>
+      <pubDate>Tue, 27 Apr 2021 00:28:56 -0800</pubDate>
+      
+      <guid>https://oliverwilkie.com/2021/04/chat_server/</guid>
+      <description>How to make a Chat Server in Ruby using the TCP protocol</description>
+    </item>
     
     <item>
       <title>Animating Text</title>
