@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Oliver Wilkie</copyright>
-    <lastBuildDate>Tue, 27 Apr 2021 00:28:56 -0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 May 2021 13:23:08 -0700</lastBuildDate>
     
 	<atom:link href="https://oliverwilkie.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Repeated Consumption</title>
+      <link>https://oliverwilkie.com/lists/repeated-consumption/</link>
+      <pubDate>Fri, 07 May 2021 13:23:08 -0700</pubDate>
+      
+      <guid>https://oliverwilkie.com/lists/repeated-consumption/</guid>
+      <description>This is a test</description>
+    </item>
     
     <item>
       <title>Building a Chat Server in Ruby</title>
@@ -230,15 +239,6 @@ I&amp;rsquo;ve also been a huge fan of my Raspberry Pi. Every time I look at it,
       
       <guid>https://oliverwilkie.com/portfolio/meng/</guid>
       <description>Researching motion stabilisation techniques for creating the illusion of a non-beating heart during laproscopic surgery.</description>
-    </item>
-    
-    <item>
-      <title>Repeated Consumption</title>
-      <link>https://oliverwilkie.com/lists/repeated-consumption/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://oliverwilkie.com/lists/repeated-consumption/</guid>
-      <description>This is a test</description>
     </item>
     
   </channel>

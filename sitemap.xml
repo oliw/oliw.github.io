@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://oliverwilkie.com/lists/</loc>
+    <lastmod>2021-05-07T13:23:08-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/</loc>
+    <lastmod>2021-05-07T13:23:08-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/lists/repeated-consumption/</loc>
+    <lastmod>2021-05-07T13:23:08-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://oliverwilkie.com/2021/04/chat_server/</loc>
     <lastmod>2021-04-27T20:58:16-07:00</lastmod>
   </url>
@@ -18,13 +33,18 @@
   </url>
   
   <url>
-    <loc>https://oliverwilkie.com/</loc>
-    <lastmod>2021-05-07T13:23:08-07:00</lastmod>
+    <loc>https://oliverwilkie.com/2021/01/animatedtext/</loc>
+    <lastmod>2021-01-16T08:36:44-08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://oliverwilkie.com/2021/01/animatedtext/</loc>
-    <lastmod>2021-01-16T08:36:44-08:00</lastmod>
+    <loc>https://oliverwilkie.com/posts/</loc>
+    <lastmod>2021-01-02T17:17:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oliverwilkie.com/portfolio/</loc>
+    <lastmod>2021-01-02T17:17:56+00:00</lastmod>
   </url>
   
   <url>
@@ -145,26 +165,6 @@
   <url>
     <loc>https://oliverwilkie.com/portfolio/meng/</loc>
     <lastmod>2021-01-02T17:17:56+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oliverwilkie.com/lists/</loc>
-    <lastmod>2021-05-07T13:23:08-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oliverwilkie.com/posts/</loc>
-    <lastmod>2021-01-02T17:17:56+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oliverwilkie.com/portfolio/</loc>
-    <lastmod>2021-01-02T17:17:56+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://oliverwilkie.com/lists/repeated-consumption/</loc>
-    <lastmod>2021-05-07T13:23:08-07:00</lastmod>
   </url>
   
 </urlset>
